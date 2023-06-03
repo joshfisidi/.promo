@@ -2,16 +2,17 @@
   <div class="Josh flex items-center justify-center">
     <div
       class="m-8 transition-all duration-200 ease-in-out transform active:scale-90 cursor-pointer"
-      @mousedown="isActive = true"
-      @mouseup="isActive = false"
-      @mouseleave="isActive = false"
-      @touchstart="isActive = true"
-      @touchend="isActive = false"
+      @contextmenu.prevent
+      @mousedown.prevent
+      @mouseup.prevent
+      @mouseleave.prevent
+      @touchstart.prevent
+      @touchend.prevent
       :class="{ 'scale-90': isActive }"
     >
       <div class="flex flex-col items-center text-center">
         <div class="md:flex-shrink-0">
-          <div class="w-24 h-24 md:w-24 md:h-24 flex items-center justify-center">
+          <div class="w-24 h-24 md:w-24 md:h-24 flex items-center justify-center" @touchstart="isActive = true" @touchend="isActive = false">
             <img class="object-cover w-full h-full rounded-full" :src="image" :alt="title" />
           </div>
         </div>

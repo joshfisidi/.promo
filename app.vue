@@ -1,9 +1,5 @@
 <script setup lang="ts">
 
-
-// definePageMeta({
-  // middleware:"auth"
-// })
 </script>
 
 <template>
@@ -13,3 +9,11 @@
     </NuxtLayout>
   </div>
 </template>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
+body {
+  font-family: 'Roboto', sans-serif;
+}
+</style>
