@@ -46,3 +46,24 @@ npm run preview
 ```
 
 Checkout the [deployment documentation](https://v3.nuxtjs.org/guide/deploy/presets) for more information.
+
+homework
+
+install and implement usevue into your app
+
+create a card with image masking of an array system for your links
+make sure it is scalable
+
+use supabase and implement and use them for storage
+
+understand how slot and layouts works a little bit more
+
+add https://tresjs.org/
+
+create an npm fisidi package
+
+https://www.freecodecamp.org/news/how-to-create-and-publish-your-first-npm-package/
+
+install dev tools
+
+https://devtools.nuxtjs.org/
