@@ -13,7 +13,15 @@
 <script>
 import { ref } from 'vue';
 
-const isActive = ref(false);
+export default {
+  setup() {
+    const isActive = ref(false);
+    
+    return {
+      isActive
+    }
+  }
+}
 </script>
 
 <style scoped>
