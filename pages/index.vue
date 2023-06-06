@@ -1,11 +1,12 @@
-<script setup lang="ts">
 
-</script>
 <template>
     <div class="Main flex justify-center items-center"> ??
 
     </div>
+    <Header/>
+    <Navbar/>
     <Josh/>
+    <Backstory/>
     <Social/>
     <Spotify/>
     <AppleMusic/>
