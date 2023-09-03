@@ -1,6 +1,5 @@
-const defaultTheme = require('tailwindcss/defaultTheme')
+const defaultTheme = require('tailwindcss/defaultTheme');
 
-/** @type {import('tailwindcss').Config} */
 module.exports = {
   darkMode: 'media', // or 'class'
   content: [
@@ -13,7 +12,7 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        sans: ['Montserrat', ...defaultTheme.fontFamily.sans],
+        sans: ['Roboto', 'Montserrat', ...defaultTheme.fontFamily.sans],
       },
       colors: {
         // Add your colors here
@@ -42,7 +41,7 @@ module.exports = {
       textColor: ['responsive', 'hover', 'focus', 'group-hover'],
       opacity: ['responsive', 'hover', 'focus', 'group-hover'],
       backgroundColor: ['responsive', 'hover', 'focus', 'group-hover'],
-    }
+    },
   },
   plugins: [],
-}
+};

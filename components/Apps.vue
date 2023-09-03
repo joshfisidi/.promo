@@ -1,9 +1,9 @@
 <template>
-  <div
+  <nuxt-link
     @touchstart="isActive = true"
     @touchend="isActive = false"
     :class="{ 'scale-90': isActive }"
-    class="Alert flex justify-center text-center flex-col bg-slate-900 rounded px-2 py-1 mx-7 lg:mx-20 my-4 text-white font-bold mby-2 transition-all duration-200 ease-in-out transform active:scale-90 cursor-pointer"
+    class="Alert flex justify-center text-center flex-col bg-slate-900 rounded px-4 py-2 mx-7 lg:mx-20 my-4 text-white font-bold mby-2 transition-all duration-200 ease-in-out transform active:scale-90 cursor-pointer"
     style="
       -webkit-touch-callout: none;
       -webkit-user-select: none;
@@ -12,9 +12,10 @@
       -ms-user-select: none;
       user-select: none;
     "
+    to="/Apps"
   >
-    Apple Music
-  </div>
+    Apps
+  </nuxt-link>
 </template>
 
 <script>

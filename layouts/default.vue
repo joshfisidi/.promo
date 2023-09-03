@@ -1,5 +1,7 @@
 <template>
-    <div class ="DefaultLayout h-screen text-yellow-500 text-center bg-slate-900">
+    <div class ="DefaultLayout h-screen text-red-700 text-center bg-black">
         <slot />
     </div>
 </template>
+
+//change background here

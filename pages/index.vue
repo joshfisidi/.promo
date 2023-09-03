@@ -1,15 +1,21 @@
-
 <template>
-    <div class="Main flex justify-center items-center"> ??
+  <Header />
+  <Josh />
+  <Social />
+  <Backstory />
+  <Music />
+  <Apps />
+  <Capital />
+  <Code />
+  <Ad />
+</template>
 
-    </div>
-    <Header/>
-    <Navbar/>
-    <Josh/>
-    <Backstory/>
-    <Social/>
-    <Spotify/>
-    <AppleMusic/>
-    <Github/>
-    <Discord/>
-    </template>
+<script setup>
+useHead("...");
+
+useSeoMeta({
+  title: "jOsh",
+  ogTitle: "RedPill Album",
+});
+</script>
+<style></style>

@@ -5,4 +5,27 @@
 body {
     color: red;
     background: #000;
-};
+}
+
+// Define a variable for the breakpoint value
+$large-display: 1200px;
+
+// Global CSS for transitions, outside of any media query
+.fade-enter-active, .fade-leave-active {
+  transition: opacity 4s;
+}
+.fade-enter, .fade-leave-to {
+  opacity: 0;
+}
+
+// Media query for large displays
+@media (min-width: $large-display) {
+  // Your CSS styles for large displays here
+  body {
+    font-size: 18px;
+  }
+
+  .container {
+    max-width: 1200px;
+  }
+}
