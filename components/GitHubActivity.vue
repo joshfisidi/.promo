@@ -1,13 +1,13 @@
 <template>
   <div class="activity-page">
     <div v-if="loading" class="loading-container">
-      <div class="loading-text">Loading...</div>
+      <div class="loading-text">Fisidi...</div>
     </div>
     <div v-else>
-      <h1>GitHub Activity</h1>
+      <h1>Git Activity</h1>
       <div class="github-events">
         <ul>
-          <li v-for="(event, index) in githubActivity" :key="index">
+          <li  v-for="(event, index) in githubActivity.slice(0, 90)" :key="index">
             <strong>{{ event.type }}</strong> - {{ event.repo.name }}
           </li>
         </ul>
@@ -37,16 +37,22 @@ onMounted(async () => {
 });
 </script>
 
-<style scoped>
+<style lang="scss">
 .activity-page {
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: 100vh;
+  min-height: 50vh;
 }
 
+.activity-page h1 {
+  color: white;
+}
 .loading-container {
   text-align: center;
+  background-color: #000000; /* Add a background color */
+  padding: 20px;
+  border-radius: 10px;
 }
 
 .loading-text {
@@ -55,5 +61,28 @@ onMounted(async () => {
 
 .github-events {
   margin-top: 20px;
+  font-size: 3vw;
+  /* Move this line inside .github-events to set the font color to white */
+  color: white;
+}
+
+.github-activity-card {
+  /* ...existing styles */
+  overflow-y: auto; /* Add scroll if content overflows */
+
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.fade-in {
+  animation: fadeIn 0.5s ease-in-out;
 }
 </style>
+

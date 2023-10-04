@@ -3,7 +3,7 @@ const defaultTheme = require('tailwindcss/defaultTheme');
 module.exports = {
   darkMode: 'media', // or 'class'
   content: [
-    "./components/**/*.{js,vue,ts}",
+    './components/**/*.{vue,js,ts,jsx,tsx}',
     "./layouts/**/*.vue",
     "./pages/**/*.vue",
     "./plugins/**/*.{js,ts}",
@@ -15,7 +15,9 @@ module.exports = {
         sans: ['Roboto', 'Montserrat', ...defaultTheme.fontFamily.sans],
       },
       colors: {
-        // Add your colors here
+        // Add your custom colors here
+        'custom-blue': '#3490dc',
+        'custom-red': '#e3342f',
       },
       spacing: {
         '7': '1.75rem',
@@ -43,5 +45,8 @@ module.exports = {
       backgroundColor: ['responsive', 'hover', 'focus', 'group-hover'],
     },
   },
-  plugins: [],
+  plugins: [
+    // Add any Tailwind CSS plugins you want to use
+    // Example: require('@tailwindcss/typography'),
+  ],
 };

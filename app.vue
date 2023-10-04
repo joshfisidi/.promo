@@ -1,17 +1,27 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+
+
+useHead({
+    meta: [
+      { name: 'viewport', content: 'width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' }
+    ]
+  });
+  
+</script>
 
 <template>
   <div class="App bg-slate-900 h-screen text-white">
     <NuxtLayout>
       <NuxtPage />
-      <Footer />
-      <code />
+      <Footer/>
     </NuxtLayout>
   </div>
 </template>
 
-<style>
+<style lang="scss">
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
 body {
-  font-family: "Roboto", sans-serif;
+  font-family: 'Roboto', sans-serif;
 }
 </style>

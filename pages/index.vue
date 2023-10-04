@@ -1,4 +1,5 @@
 <template>
+ 
   <Header />
   <Josh />
   <Social />
@@ -8,6 +9,7 @@
   <Capital />
   <Code />
   <Ad />
+
 </template>
 
 <script setup>
@@ -15,7 +17,9 @@ useHead("...");
 
 useSeoMeta({
   title: "jOsh",
-  ogTitle: "RedPill Album",
+  ogTitle: "j0sh.Promo",
 });
 </script>
-<style></style>
+<style>
+
+</style>

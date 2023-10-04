@@ -2,27 +2,72 @@
 @tailwind components;
 @tailwind utilities;
 
-body {
-    color: red;
-    background: #000;
-}
-
-// Define a variable for the breakpoint value
+// Define breakpoint variables
+$ipad-portrait: 768px;
+$ipad-landscape: 1024px;
+$laptop: 1025px;
+$desktop: 1281px;
 $large-display: 1200px;
 
-// Global CSS for transitions, outside of any media query
-.fade-enter-active, .fade-leave-active {
-  transition: opacity 4s;
-}
-.fade-enter, .fade-leave-to {
-  opacity: 0;
+body {
+  color: red;
+  background: #000;
+  font-family: "Roboto", sans-serif;
+  -webkit-font-smoothing: antialiased; // Moved here
 }
 
-// Media query for large displays
-@media (min-width: $large-display) {
-  // Your CSS styles for large displays here
+.transparent-icon-bg {
+  background-color: transparent !important;
+}
+
+// iPads in portrait mode
+@media (min-width: $ipad-portrait) and (max-width: $ipad-landscape) and (orientation: portrait) {
+  body {
+    font-size: 14px;
+  }
+
+  .container {
+    max-width: 768px;
+  }
+}
+
+// iPads in landscape mode
+@media (min-width: $ipad-portrait) and (max-width: $ipad-landscape) and (orientation: landscape) {
+  body {
+    font-size: 15px;
+  }
+
+  .container {
+    max-width: 1024px;
+  }
+}
+
+// Laptops
+@media (min-width: $laptop) and (max-width: #{$desktop - 1}) {
+  body {
+    font-size: 16px;
+  }
+
+  .container {
+    max-width: 1025px;
+  }
+}
+
+// Desktops
+@media (min-width: #{$desktop}) {
   body {
     font-size: 18px;
+  }
+
+  .container {
+    max-width: 1281px;
+  }
+}
+
+// Large Displays
+@media (min-width: $large-display) {
+  body {
+    font-size: 20px;
   }
 
   .container {

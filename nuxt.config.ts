@@ -1,13 +1,12 @@
 export default defineNuxtConfig({
   // Alias configurations
   alias: {
-    assets: "/<rootDir>/assets",
-    // previous way to resolve a path
-    // "@": resolve(__dirname, "/"),
+    assets: "/assets",
   },
+  
 
   // CSS configurations
-  css: ["~/assets/main.scss"],
+  css: ["~/assets/main.scss", "~/assets/Josh.scss"],
 
   // Modules
   modules: [
@@ -20,13 +19,15 @@ export default defineNuxtConfig({
   googleFonts: {
     families: {
       Roboto: [100, 300, 400, 500, 700, 900],
-      // other font families you wish to add
+      // Add other font families if needed
     },
   },
+  
 
   // PostCSS configurations
   postcss: {
     plugins: {
+      'postcss-nested': {},  // or 'postcss-nested': {}
       tailwindcss: {},
       autoprefixer: {},
     },
@@ -34,6 +35,6 @@ export default defineNuxtConfig({
 
   // Page transition
   app: {
-    pageTransition: { name: 'Github', mode: 'out-in'}
+    
   },
 });

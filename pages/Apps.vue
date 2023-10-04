@@ -1,79 +1,121 @@
+
 <template>
-  <div class="card-container">
-    <div class="card" @touchstart="expandCard(1)" @touchend="collapseCard(1)">
-      <div class="card-content">
-        <h2>{{ cards[0].title }}</h2>
-        {{ cards[0].content }}
+  <main>
+    <slot>
+  <div class="carousel-container" ref="carouselRef">
+  <div class="container">
+    <div class="carousel-card">
+      <div class="carousel" @touchstart="handleTouchStart" @touchend="handleTouchEnd">
+        <div
+          v-for="(image, index) in images"
+          :key="index"
+          class="carousel-item"
+          :style="{ transform: `translateX(-${currentSlide * 100}%)` }"
+        >
+          <img :src="image.path" class="carousel-image" />
+        </div>
       </div>
     </div>
+    <div class="arrow-container">
+      
+    </div>
   </div>
+</div>
+</slot>
+</main>
 </template>
 
-<script setup>
-import { ref } from "vue";
+<script setup lang="ts">
+import { ref } from 'vue';
+import { useScrollControl } from '@/composables/useScrollControl'; // adjust the import path as needed
+useScrollControl();
 
-const cards = [
-  { id: 1, title: "Card 1", content: "Content of Card 1" },
-  { id: 2, title: "Card 2", content: "Content of Card 2" },
-  { id: 3, title: "Card 3", content: "Content of Card 3" },
-  // Add more cards as needed
-];
+const images = ref([
+  { path: '/blirce-fisidi-music-dao.PNG' },
+  { path: '/jOsh-j0sh.JPG' },
+  { path: '/jOshjGomes2023.jpg' },
+]);
 
-const expandedCard = ref(null);
+const currentSlide = ref(0);
+let touchStartX = 0;
 
-function expandCard(cardId) {
-  expandedCard.value = cardId;
-}
+const handleTouchStart = (event: TouchEvent) => {
+  touchStartX = event.touches[0].clientX;
+};
 
-function collapseCard(cardId) {
-  if (expandedCard.value === cardId) {
-    expandedCard.value = null;
+const handleTouchEnd = (event: TouchEvent) => {
+  const touchEndX = event.changedTouches[0].clientX;
+  const touchDistance = touchEndX - touchStartX;
+
+  if (touchDistance > 50) {
+    if (currentSlide.value > 0) currentSlide.value--;
+  } else if (touchDistance < -50) {
+    if (currentSlide.value < images.value.length - 1) currentSlide.value++;
   }
-}
+};
+
 </script>
 
-<style scoped>
-.card-container {
+
+
+<style lang="scss">
+.container {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
+  height: 90vh;
+  background-color: #000000;
 }
 
-.card {
-  background-color: #f0f0f0;
-  border-radius: 10px;
-  padding: 20px;
-  width: 80vw; /* Take up entire screen width */
-  height: 50vh; /* Adjust the height as needed */
-  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
-  cursor: pointer;
-  transition: transform 0.2s ease-in-out;
+.carousel-card {
+  width: 300px;
+  height: 400px;
+  background-color: #fff;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  position: absolute;
+}
 
-  &:hover {
-    transform: scale(1.05);
-  }
+.carousel {
+  display: flex;
+  transition: transform 0.5s ease-in-out;
+}
 
-  .card-content {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    height: 100%;
-  }
+.carousel-item {
+  flex: 0 0 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 
-  h2 {
-    color: #fff;
-    font-size: 24px;
-    margin-bottom: 10px;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
-  }
+.carousel-image {
+  border-radius: 20px;
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+}
 
-  .card-content {
-    font-size: 16px;
-    padding-top: 10px;
-    border-top: 1px solid #ccc;
-  }
+.page-left-enter-active,
+.page-right-enter-active,
+.page-left-leave-active,
+.page-right-leave-active {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  transition: all 150ms linear;
+}
+
+.page-left-enter-from, .page-right-leave-to {
+  transform: translateX(100%);
+}
+
+.page-left-leave-to, .page-right-enter-from {
+  transform: translateX(-100%);
+}
+
+.page-left-enter-to, .page-right-enter-to {
+  transform: translateX(0);
 }
 </style>

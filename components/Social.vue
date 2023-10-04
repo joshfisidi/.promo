@@ -35,25 +35,25 @@ export default {
         index: 1,
         href: "https://instagram.com/joshjgomes",
         imageSrc:
-          "https://github.com/joshjgomes/assets/blob/main/discord_logo.png?raw=true",
+          "/discord-ghost-logo.GIF",
       },
       {
         index: 2,
         href: "https://instagram.com/joshjgomes",
         imageSrc:
-          "https://github.com/joshjgomes/assets/blob/main/instagram_logo.png?raw=true",
+          "/instagram_logo.png",
       },
       {
         index: 3,
         href: "https://x.com/joshjgomes",
         imageSrc:
-          "https://github.com/joshjgomes/assets/blob/main/x_logo.png?raw=true",
+          "/x_logo.png",
       },
       {
         index: 4,
         href: "https://t.snapchat.com/jBkudev5",
         imageSrc:
-          "https://github.com/joshjgomes/assets/blob/main/snapchat_logo.png?raw=true",
+          "/snapchat_logo.png",
       },
     ];
 
@@ -101,4 +101,56 @@ export default {
   object-fit: cover;
   border-radius: 50%;
 }
+
+/* iPads in portrait mode */
+@media only screen and (min-device-width : 768px) and (max-device-width : 1024px) and (orientation : portrait) {
+  .circle {
+    width: 18px;
+    height: 18px;
+    margin: 0 10px;
+  }
+}
+
+/* iPads in landscape mode */
+@media only screen and (min-device-width : 768px) and (max-device-width : 1024px) and (orientation : landscape) {
+  .circle {
+    width: 22px;
+    height: 22px;
+    margin: 0 12px;
+  }
+}
+
+/* Laptops */
+@media only screen and (min-width: 1025px) and (max-width: 1280px) {
+  .circle {
+    width: 24px;
+    height: 24px;
+    margin: 0 15px;
+  }
+}
+
+/* Desktops */
+@media only screen and (min-width: 1281px) {
+  .circle {
+    width: 28px;
+    height: 28px;
+    margin: 0 18px;
+  }
+
+  .circle-mask {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.2s ease-in-out; /* already existing */
+  }
+  
+  .circle:active .circle-mask, .circle:active {
+    transform: scale(0.9);
+    transition: transform 0.1s ease-in-out; /* added for quick response */
+  }
+  
+}
 </style>
+

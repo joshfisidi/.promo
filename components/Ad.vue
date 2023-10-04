@@ -7,7 +7,6 @@
         @touchstart="isActiveAd = true"
         @touchend="isActiveAd = false"
         :class="{ 'scale-90': isActiveAd }"
-        style="width: 41vw; height: 15vh"
       >
         <div class="iframe-container">
           <iframe
@@ -28,7 +27,6 @@
         @touchstart="isActiveTwitter = true"
         @touchend="isActiveTwitter = false"
         :class="{ 'scale-90': isActiveTwitter }"
-        style="width: 41vw; height: 15vh"
       >
         <div class="iframe-container">
           <iframe
@@ -50,7 +48,7 @@ import { ref } from "vue";
 
 <style scoped>
 .Alert {
-  /* Your existing Alert styles here */
+  height: 15vh;
 }
 
 .iframe-container {
@@ -71,5 +69,28 @@ iframe {
 
 .link-wrapper {
   text-decoration: none; /* Remove the default underline on links */
+}
+
+/* Media queries for responsiveness */
+
+/* Large screens (e.g., desktops) */
+@media (min-width: 1280px) {
+  a .Alert {
+    width: 45.6vw;
+  }
+}
+
+/* Medium screens (e.g., tablets) */
+@media (min-width: 768px) and (max-width: 1279px) {
+  a .Alert {
+    width: 46vw;
+  }
+}
+
+/* Small screens (e.g., phones) */
+@media (max-width: 767px) {
+  a .Alert {
+    width: 41vw; /* Your initial setting */
+  }
 }
 </style>

@@ -20,6 +20,13 @@
 
 <script>
 import { ref } from "vue";
+import Starfield from '@/components/Starfield.vue'; // Update the path as needed
+
+export default {
+  components: {
+    Starfield,
+  },
+};
 
 const isActive = ref(false);
 </script>

@@ -1,21 +1,26 @@
 <template>
-  <div class="flex mb-4">
-    <div class="bg-slate-900 flex-1 h-7">
+  <div class="flex mb-4 relative">
+    <div class="bg-slate-900 flex-1 h-7 bg-transparent">
       <div class="marquee font-mono text-1xl text-center">
         <div class="tracking-in-expand">
           <div class="animated-text-container">
-            <span class="animated-text" v-if="isVisible">{{
-              currentText
-            }}</span>
+            <span class="animated-text" v-if="isVisible">
+              {{ currentText }}
+            </span>
           </div>
         </div>
       </div>
     </div>
+    <button @click="toggleBellAnimation" class="bell-icon absolute top-1/2 right-4 transform -translate-y-1/2 max-2xl:20px" :class="{ 'animate-bell': animateBell }">
+      <Icon :icon="bellIcon" class="text-white"></Icon>
+    </button>
   </div>
 </template>
 
 <script setup>
 import { ref, onMounted } from "vue";
+import { Icon } from '@iconify/vue';
+import bellIcon from '@iconify/icons-mdi/bell';
 
 const texts = [
   "BitWire",
@@ -29,7 +34,6 @@ const shuffledTexts = shuffleArray(texts);
 const currentText = ref(shuffledTexts[0]);
 let index = 0;
 
-// Shuffle the array of texts
 function shuffleArray(array) {
   for (let i = array.length - 1; i > 0; i--) {
     const j = Math.floor(Math.random() * (i + 1));
@@ -38,25 +42,51 @@ function shuffleArray(array) {
   return array;
 }
 
-// Function to cycle through shuffled texts
 const cycleThroughTexts = () => {
   index = (index + 1) % shuffledTexts.length;
   currentText.value = shuffledTexts[index];
 };
 
-// Hide and show the animation after a delay
 onMounted(() => {
   setTimeout(() => {
     isVisible.value = true;
     cycleThroughTexts();
-    setInterval(cycleThroughTexts, 3000); // Cycle every 3 seconds
-  }, 3000); // Delay the animation by 3 seconds
+    setInterval(cycleThroughTexts, 3000);
+  }, 3000);
 });
 
 const isVisible = ref(false);
+const animateBell = ref(false);
+
+const toggleBellAnimation = () => {
+  animateBell.value = !animateBell.value;
+};
 </script>
 
+
 <style lang="scss" scoped>
+/* ...existing styles... */
+
+.bell-icon {
+  position: absolute;
+  top: 50%;
+  right: 20px;
+  transform: translateY(-50%);
+  cursor: pointer;
+}
+
+.animate-bell {
+  animation: bellShake 0.2s ease-in-out;
+}
+
+@keyframes bellShake {
+  0% { transform: translateY(-50%) rotate(0deg); }
+  25% { transform: translateY(-50%) rotate(-10deg); }
+  50% { transform: translateY(-50%) rotate(10deg); }
+  75% { transform: translateY(-50%) rotate(-10deg); }
+  100% { transform: translateY(-50%) rotate(0deg); }
+}
+
 @keyframes tracking-in-expand {
   0% {
     letter-spacing: -0.5em;
@@ -78,8 +108,8 @@ const isVisible = ref(false);
 .animated-text {
   display: inline-block;
   animation: fadeInUp 1.5s ease-in-out infinite alternate;
-  color: white; /* Change the color to black */
-  font-weight: bold; /* Add font weight */
+  color: white;
+  font-weight: bold;
 }
 
 @keyframes fadeInUp {
