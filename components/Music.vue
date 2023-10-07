@@ -46,7 +46,6 @@
 
 <script setup lang="ts">
 import { ref, onMounted, onUnmounted } from 'vue';
-import { contains} from 'vue';
 
 const isActive = ref(false);
 const buttonContainer = ref(null);
