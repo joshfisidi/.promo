@@ -1,69 +1,67 @@
-# Nuxt Example
+# jOsh.Promo 🎵📊
 
-Deploy your [Nuxt](https://nuxt.com) project to Vercel with zero configuration.
+![jOsh.Promo Logo](./assets/logo.png)
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/vercel/vercel/tree/main/examples/nuxtjs&template=nuxtjs)
+> A private link aggregator for the autodidact musician polymath jOsh. Built with ❤️ using Nuxt3, Chart.js, Particles.js, and Three.js.
 
-_Live Example: https://nuxtjs-template.vercel.app_
+[![Build Status](https://travis-ci.com/yourusername/jOsh.Promo.svg?branch=main)](https://travis-ci.com/yourusername/jOsh.Promo)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-Look at the [Nuxt 3 documentation](https://v3.nuxtjs.org) to learn more.
+---
 
-## Setup
+## Table of Contents 📚
 
-Make sure to install the dependencies:
+- [Introduction](#introduction)
+- [Features](#features)
+- [Installation](#installation)
+- [Usage](#usage)
+- [Contributing](#contributing)
+- [License](#license)
+- [Acknowledgements](#acknowledgements)
 
-```bash
-# yarn
-yarn
+---
 
-# npm
+## Introduction 🎉
+
+jOsh.Promo is a specialized link aggregator tailored for jOsh, an autodidact musician and polymath. This platform aims to centralize all the essential resources, tutorials, and tools that jOsh frequently uses, making it easier to focus on creativity and learning.
+
+---
+
+## Features 🌟
+
+- **Resource Aggregation**: Collect and categorize your favorite learning resources.
+- **Interactive Charts**: Built with Chart.js for tracking learning progress.
+- **Stunning Visuals**: Utilizes Particles.js and Three.js for an immersive UI experience.
+- **Fast and Responsive**: Built on Nuxt3 for optimal performance.
+
+---
+
+## Installation 🛠️
+
+### Prerequisites
+
+- Node.js (>=14.x)
+- Yarn or npm
+
+### Steps
+
+1. Clone the repository:
+
+   ```bash
+   git clone https://github.com/yourusername/jOsh.Promo.git
+
+2. Navigate to the project directory:
+
+```cd jOsh.Promo
+
+2. Install dependencies
+```yarn install
+# or
 npm install
 
-# pnpm
-pnpm install --shamefully-hoist
-```
-
-## Development Server
-
-Start the development server on http://localhost:3000
-
-```bash
+3. Run the development server
+```yarn dev
+# or
 npm run dev
-```
 
-## Production
 
-Build the application for production:
-
-```bash
-npm run build
-```
-
-Locally preview production build:
-
-```bash
-npm run preview
-```
-
-Checkout the [deployment documentation](https://v3.nuxtjs.org/guide/deploy/presets) for more information.
-
-homework
-
-install and implement usevue into your app
-
-create a card with image masking of an array system for your links
-make sure it is scalable
-
-use supabase and implement and use them for storage
-
-understand how slot and layouts works a little bit more
-
-add https://tresjs.org/
-
-create an npm fisidi package
-
-https://www.freecodecamp.org/news/how-to-create-and-publish-your-first-npm-package/
-
-install dev tools
-
-https://devtools.nuxtjs.org/
