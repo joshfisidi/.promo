@@ -37,4 +37,10 @@ export default defineNuxtConfig({
   app: {
     
   },
+   // Environment Variables Configuration
+   runtimeConfig: {
+    supabaseUrl: process.env.SUPABASE_URL,
+    supabaseKey: process.env.SUPABASE_KEY,
+    // Add any other environment variables you need
+  },
 });

@@ -1,34 +1,25 @@
-
 <template>
-  <main>
-    <slot>
-  <div class="carousel-container" ref="carouselRef">
-  <div class="container">
-    <div class="carousel-card">
-      <div class="carousel" @touchstart="handleTouchStart" @touchend="handleTouchEnd">
-        <div
-          v-for="(image, index) in images"
-          :key="index"
-          class="carousel-item"
-          :style="{ transform: `translateX(-${currentSlide * 100}%)` }"
-        >
-          <img :src="image.path" class="carousel-image" />
+  <div class="carousel-container">
+    <div class="container">
+      <div class="carousel-card">
+        <div class="carousel" @touchstart="handleTouchStart" @touchend="handleTouchEnd">
+          <div
+            v-for="(image, index) in images"
+            :key="index"
+            class="carousel-item"
+            :style="isSwiping ? { transform: `perspective(1000px) rotateY(${currentSlide * -45}deg)` } : { transform: `translateX(-${currentSlide * 100}%)` }"
+          >
+            <img :src="image.path" class="carousel-image" loading="lazy" />
+          </div>
         </div>
       </div>
     </div>
-    <div class="arrow-container">
-      
-    </div>
   </div>
-</div>
-</slot>
-</main>
 </template>
+
 
 <script setup lang="ts">
 import { ref } from 'vue';
-import { useScrollControl } from '@/composables/useScrollControl'; // adjust the import path as needed
-useScrollControl();
 
 const images = ref([
   { path: '/blirce-fisidi-music-dao.PNG' },
@@ -37,10 +28,12 @@ const images = ref([
 ]);
 
 const currentSlide = ref(0);
+const isSwiping = ref(false);  // New variable to track swiping
 let touchStartX = 0;
 
 const handleTouchStart = (event: TouchEvent) => {
   touchStartX = event.touches[0].clientX;
+  isSwiping.value = true;  // Set to true when touch starts
 };
 
 const handleTouchEnd = (event: TouchEvent) => {
@@ -52,18 +45,17 @@ const handleTouchEnd = (event: TouchEvent) => {
   } else if (touchDistance < -50) {
     if (currentSlide.value < images.value.length - 1) currentSlide.value++;
   }
+
+  isSwiping.value = false;  // Set to false when touch ends
 };
-
 </script>
-
-
 
 <style lang="scss">
 .container {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 90vh;
+  height: 100vh;
   background-color: #000000;
 }
 
@@ -74,12 +66,11 @@ const handleTouchEnd = (event: TouchEvent) => {
   border-radius: 20px;
   overflow: hidden;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  position: absolute;
 }
 
 .carousel {
   display: flex;
-  transition: transform 0.5s ease-in-out;
+  transition: transform 0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55);
 }
 
 .carousel-item {
@@ -87,6 +78,7 @@ const handleTouchEnd = (event: TouchEvent) => {
   display: flex;
   align-items: center;
   justify-content: center;
+  position: relative;
 }
 
 .carousel-image {
@@ -96,26 +88,29 @@ const handleTouchEnd = (event: TouchEvent) => {
   object-fit: cover;
 }
 
-.page-left-enter-active,
-.page-right-enter-active,
-.page-left-leave-active,
-.page-right-leave-active {
-  position: fixed;
+.hover-info {
+  position: absolute;
   top: 0;
   left: 0;
   right: 0;
-  transition: all 150ms linear;
+  bottom: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  opacity: 0;
+  transition: opacity 0.3s ease;
 }
 
-.page-left-enter-from, .page-right-leave-to {
-  transform: translateX(100%);
+.carousel-item:hover .hover-info {
+  opacity: 1;
 }
 
-.page-left-leave-to, .page-right-enter-from {
-  transform: translateX(-100%);
-}
-
-.page-left-enter-to, .page-right-enter-to {
-  transform: translateX(0);
+.title,
+.description {
+  background-color: rgba(0, 0, 0, 0.7);
+  color: white;
+  padding: 10px;
+  border-radius: 5px;
 }
 </style>

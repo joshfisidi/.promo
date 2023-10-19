@@ -4,7 +4,7 @@
     <!-- Your existing layout content here -->
 
     <!-- Footer buttons -->
-    
+     
     <div 
     class="fixed bottom-0 w-full" 
     :class="{ hidden: !showElement }"

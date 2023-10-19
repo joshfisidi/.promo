@@ -29,8 +29,10 @@
     "chart.js": "^4.4.0",
     "particles.js": "^2.0.0",
     "sass": "^1.6.0",
+    "swiper": "^10.3.1",
     "three": "^0.156.1",
     "vite-svg-loader": "^4.0.0",
+    "vue-github-calendar": "^0.1.2",
     "vue-tilt.js": "^1.1.1"
   }
 }

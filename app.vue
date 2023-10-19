@@ -1,4 +1,7 @@
 <script setup lang="ts">
+// Example in a TypeScript file (e.g., ts file in your Nuxt project)
+const supabaseUrl: string | undefined = process.env.SUPABASE_URL;
+const supabaseKey: string | undefined = process.env.SUPABASE_KEY;
 
 
 useHead({
