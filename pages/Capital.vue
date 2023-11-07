@@ -31,6 +31,6 @@ onMounted(async () => {
 });
 </script>
 
-<style scoped>
+<style scoped lang="scss">
 /* You can add some CSS styles here if needed */
 </style>

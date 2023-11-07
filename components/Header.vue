@@ -11,25 +11,33 @@
         </div>
       </div>
     </div>
-    <button @click="toggleBellAnimation" class="bell-icon absolute top-1/2 right-4 transform -translate-y-1/2 max-2xl:20px" :class="{ 'animate-bell': animateBell }">
+    <button @click="toggleBellAnimation" class="bell-icon absolute top-1/2 right-4 transform -translate-y-1/2" :class="{ 'animate-bell': animateBell }">
       <Icon :icon="bellIcon" class="text-white"></Icon>
     </button>
+    <div v-if="isModalVisible" class="modal">
+      <div class="modal-background" @click="isModalVisible = false"></div>
+      <div class="modal-content">
+        <header class="modal-header">
+          <p class="modal-title">Subscribed</p>
+          <button class="close-modal" @click="isModalVisible = false">X</button>
+        </header>
+        <section class="modal-body">
+          Thank you for subscribing!
+        </section>
+        <footer class="modal-footer">
+          <button class="close-button" @click="isModalVisible = false">Close</button>
+        </footer>
+      </div>
+    </div>
   </div>
 </template>
 
 <script setup>
-import { ref, onMounted } from "vue";
+import { ref, onMounted } from 'vue';
 import { Icon } from '@iconify/vue';
 import bellIcon from '@iconify/icons-mdi/bell';
 
-const texts = [
-  "BitWire",
-  "Temple Renew",
-  "RedPill",
-  "Blirce",
-  "BrainWash",
-  "Tracer",
-];
+const texts = ["BitWire", "Temple Renew", "RedPill", "Blirce", "BrainWash", "Tracer"];
 const shuffledTexts = shuffleArray(texts);
 const currentText = ref(shuffledTexts[0]);
 let index = 0;
@@ -47,6 +55,15 @@ const cycleThroughTexts = () => {
   currentText.value = shuffledTexts[index];
 };
 
+const isVisible = ref(false);
+const animateBell = ref(false);
+const isModalVisible = ref(false);
+
+const toggleBellAnimation = () => {
+  animateBell.value = !animateBell.value;
+  isModalVisible.value = true; // Show modal when bell is clicked
+};
+
 onMounted(() => {
   setTimeout(() => {
     isVisible.value = true;
@@ -54,18 +71,70 @@ onMounted(() => {
     setInterval(cycleThroughTexts, 3000);
   }, 3000);
 });
-
-const isVisible = ref(false);
-const animateBell = ref(false);
-
-const toggleBellAnimation = () => {
-  animateBell.value = !animateBell.value;
-};
 </script>
 
 
 <style lang="scss" scoped>
-/* ...existing styles... */
+
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.modal-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.5);
+}
+
+.modal-content {
+  position: relative;
+  background-color: #fff;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  max-width: 500px;
+  width: 100%;
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.modal-title {
+  font-weight: bold;
+}
+
+.close-modal {
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.modal-body {
+  margin-top: 1rem;
+}
+
+.modal-footer {
+  margin-top: 1rem;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.close-button {
+  cursor: pointer;
+}
 
 .bell-icon {
   position: absolute;
@@ -73,6 +142,7 @@ const toggleBellAnimation = () => {
   right: 20px;
   transform: translateY(-50%);
   cursor: pointer;
+  font-size: 1.1rem;
 }
 
 .animate-bell {

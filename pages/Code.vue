@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div id="particles-js"></div>
+    <div id="tsparticles"></div>
     <div class="github-activity-container">
       <div class="github-activity-card">
         <h1 class="white-text">{{ userName }}</h1>
@@ -80,11 +80,16 @@ onMounted(async () => {
     justify-content: center;
     text-decoration: none;
     color: rgb(255, 255, 255);
+    transition: transform 0.3s ease; /* Smooth transition for hover effect */
 
     margin-top: 5vh;
     
     /* Add card background-image styles as needed */
   }
+}
+
+.card:hover {
+  transform: scale(1.05); /* Scale up card to 105% when hovered */
 }
 
 .github-activity-container {

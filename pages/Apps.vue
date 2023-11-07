@@ -1,116 +1,93 @@
 <template>
-  <div class="carousel-container">
-    <div class="container">
-      <div class="carousel-card">
-        <div class="carousel" @touchstart="handleTouchStart" @touchend="handleTouchEnd">
-          <div
-            v-for="(image, index) in images"
-            :key="index"
-            class="carousel-item"
-            :style="isSwiping ? { transform: `perspective(1000px) rotateY(${currentSlide * -45}deg)` } : { transform: `translateX(-${currentSlide * 100}%)` }"
-          >
-            <img :src="image.path" class="carousel-image" loading="lazy" />
-          </div>
-        </div>
+  <div class="card-container">
+    <div class="card" @touchstart="expandCard(cards[0].id)" @touchend="collapseCard(cards[0].id)">
+      <div class="card-content">
+        <img :src="cards[0].image" alt="Card image" class="card-image"/>
+        <h2>{{ cards[0].title }}</h2>
+        {{ cards[0].content }}
       </div>
     </div>
   </div>
 </template>
 
 
-<script setup lang="ts">
-import { ref } from 'vue';
+<script setup>
+import { ref } from "vue";
 
-const images = ref([
-  { path: '/blirce-fisidi-music-dao.PNG' },
-  { path: '/jOsh-j0sh.JPG' },
-  { path: '/jOshjGomes2023.jpg' },
-]);
+const cards = [
+  { id: 1, title: "BEFORE THE FALL", content: "FOOD AS POWER", image: "https://gojilzafapjkmacdfisx.supabase.co/storage/v1/object/public/josh.promo/Books/beforethefall-book1.png" },
+  { id: 2, title: "Card 2", content: "Content of Card 2", image: "url-to-image-2.jpg" },
+  { id: 3, title: "Card 3", content: "Content of Card 3", image: "url-to-image-3.jpg" },
+  // Add more cards as needed
+];
 
-const currentSlide = ref(0);
-const isSwiping = ref(false);  // New variable to track swiping
-let touchStartX = 0;
+const expandedCard = ref(null);
 
-const handleTouchStart = (event: TouchEvent) => {
-  touchStartX = event.touches[0].clientX;
-  isSwiping.value = true;  // Set to true when touch starts
-};
+function expandCard(cardId) {
+  expandedCard.value = cardId;
+}
 
-const handleTouchEnd = (event: TouchEvent) => {
-  const touchEndX = event.changedTouches[0].clientX;
-  const touchDistance = touchEndX - touchStartX;
-
-  if (touchDistance > 50) {
-    if (currentSlide.value > 0) currentSlide.value--;
-  } else if (touchDistance < -50) {
-    if (currentSlide.value < images.value.length - 1) currentSlide.value++;
+function collapseCard(cardId) {
+  if (expandedCard.value === cardId) {
+    expandedCard.value = null;
   }
-
-  isSwiping.value = false;  // Set to false when touch ends
-};
+}
 </script>
 
-<style lang="scss">
-.container {
+<style scoped lang="scss">
+.card-container {
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100vh;
-  background-color: #000000;
+
+  .card {
+    background-color: #181818;
+    border-radius: 15px;
+    padding: 10px;
+    width: 80vw; // Take up entire screen width
+    height: 50vh; // Adjust the height as needed
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    transition: transform 0.2s ease-in-out;
+    overflow: hidden; // This prevents child content from overflowing
+    &:hover {
+      transform: scale(1.05);
+    }
+    .card-content {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      height: 100%;
+      background-color: rgb(37, 37, 37); // Adjusted background color
+      border-radius: 10px; // Adjusted to apply rounded corners if needed
+      font-size: 16px;
+      padding-top: 10px;
+      border-top: 1px solid #ccc;
+      // Repeated styles can be removed in SCSS by not re-declaring them
+    }
+    .card-image {
+      width: 100%; // Make image take up the full width of the card
+      height: auto; // Keep the aspect ratio of the image
+      border-radius: 10px; // Optional: if you want rounded corners on the image
+      margin-bottom: 10px; // Space between image and text content
+    }
+    h2 {
+      color: #fff;
+      font-size: 24px;
+      margin-bottom: 10px;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    }
+  }
 }
 
-.carousel-card {
-  width: 300px;
-  height: 400px;
-  background-color: #fff;
-  border-radius: 20px;
-  overflow: hidden;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-
-.carousel {
-  display: flex;
-  transition: transform 0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55);
-}
-
-.carousel-item {
-  flex: 0 0 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: relative;
-}
-
-.carousel-image {
-  border-radius: 20px;
-  width: 100%;
-  height: auto;
-  object-fit: cover;
-}
-
-.hover-info {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
-  opacity: 0;
-  transition: opacity 0.3s ease;
-}
-
-.carousel-item:hover .hover-info {
-  opacity: 1;
-}
-
-.title,
-.description {
-  background-color: rgba(0, 0, 0, 0.7);
-  color: white;
-  padding: 10px;
-  border-radius: 5px;
+// Media query for mobile devices
+@media (max-width: 768px) {
+  .card-container .card {
+    padding: 20px; // increased padding more mobile
+  }
 }
 </style>
+
