@@ -2,7 +2,7 @@
   <div class="biography-container">
     <a href="https://example.com" class="header-link">
       <img
-        src="@/jasonjoshuatashika-worldsgreatestminds.png"
+        src="/jasonjoshuatashika-worldsgreatestminds.png"
         alt="Image"
         class="header-image"
       />
