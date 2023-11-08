@@ -10,7 +10,6 @@
     <div class="bio-content">
       <h2 class="section-title">The Unremarkable Story of jOsh</h2>
       <p class="section-description">
-        write the summary of everything here then within the cards are more precise documentations,
 It all starts when The Gomes Family fled Guyana due to greed and corruption within the government. Flying out just after jOsh's first birthday, eventually settling within Petite Valley, Trinidad and Tobago. This neighbourhood was built right on-top an abandoned Arawak graveyard; jOsh often quotes witnessing various paranormal activity as a young boy. Joshua and his family lived in cozy 4 bedroom bungalow with a large background. He spent most of his days outside,
       </p>
     </div>
