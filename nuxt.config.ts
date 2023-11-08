@@ -13,6 +13,11 @@ export default defineNuxtConfig({
     '@nuxt/content',
     '@nuxtjs/supabase',
     '@nuxtjs/google-fonts',
+    [
+      'nuxt-viewport', {
+      
+      }
+    ],
   ],
 
   // Google Fonts (assuming you are using @nuxtjs/google-fonts)

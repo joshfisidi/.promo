@@ -8,25 +8,16 @@
       </div>
     </div>
     <div class="card-container">
-      <a href="https://github.com/joshjgomes" target="_blank" class="card card1"></a>
-      <a href="https://github.com/user1" target="_blank" class="card card1"> 
-
+      <a
+        v-for="(image, index) in cardImages"
+        :key="index"
+        :href="'https://github.com/user' + (index + 1)"
+        target="_blank"
+        class="card card1"
+        :style="{ backgroundImage: `url(${image})`, backgroundColor: '#1b2b4e80' }"
+      >
+        <p class="card-title">{{ cardTitles[index] }}</p>
       </a>
-      <a href="https://github.com/user1" target="_blank" class="card card1"></a>
-      <a href="https://github.com/user1" target="_blank" class="card card1"></a> 
-      <a href="https://github.com/user1" target="_blank" class="card card1"></a>
-      <a href="https://github.com/user1" target="_blank" class="card card1"></a>
-      <a href="https://github.com/user1" target="_blank" class="card card1"></a>
-      <a href="https://github.com/user1" target="_blank" class="card card1"></a>
-      <a href="https://github.com/user1" target="_blank" class="card card1"></a>
-      <a href="https://github.com/user1" target="_blank" class="card card1"></a>
-      <a href="https://github.com/user1" target="_blank" class="card card1"></a>
-      <a href="https://github.com/user1" target="_blank" class="card card1"></a>
-      <a href="https://github.com/user1" target="_blank" class="card card1"></a>
-      <a href="https://github.com/user1" target="_blank" class="card card1"></a>
-      <a href="https://github.com/user1" target="_blank" class="card card1"></a>
-      <a href="https://github.com/user1" target="_blank" class="card card1"></a>
-      <!-- Add more card links as needed -->
     </div>
   </div>
 </template>
@@ -37,6 +28,49 @@ import GitHubActivity from "@/components/GitHubActivity.vue";
 import axios from "axios";
 
 const userName = ref("Swipe Down");
+
+const cardImages = [
+  "https://gojilzafapjkmacdfisx.supabase.co/storage/v1/object/public/josh.promo/Code/Myrlin.gif",
+  "https://gojilzafapjkmacdfisx.supabase.co/storage/v1/object/public/josh.promo/Code/HemoSync.gif",
+  "https://gojilzafapjkmacdfisx.supabase.co/storage/v1/object/public/josh.promo/Code/rezarac.gif",
+  "https://gojilzafapjkmacdfisx.supabase.co/storage/v1/object/public/josh.promo/Code/Vibrance.gif",
+  "https://gojilzafapjkmacdfisx.supabase.co/storage/v1/object/public/josh.promo/Code/Super.gif",
+  "https://gojilzafapjkmacdfisx.supabase.co/storage/v1/object/public/josh.promo/Code/SolNode.gif",
+  "https://gojilzafapjkmacdfisx.supabase.co/storage/v1/object/public/josh.promo/Code/Byome.gif",
+  "https://gojilzafapjkmacdfisx.supabase.co/storage/v1/object/public/josh.promo/Code/Trifecta.gif",
+  "https://gojilzafapjkmacdfisx.supabase.co/storage/v1/object/public/josh.promo/Code/Serbump.gif",
+  "https://gojilzafapjkmacdfisx.supabase.co/storage/v1/object/public/josh.promo/Code/Crystilite.gif",
+  "https://gojilzafapjkmacdfisx.supabase.co/storage/v1/object/public/josh.promo/Code/OmniStore.gif",
+  "https://gojilzafapjkmacdfisx.supabase.co/storage/v1/object/public/josh.promo/Code/SineSig.gif",
+  "https://gojilzafapjkmacdfisx.supabase.co/storage/v1/object/public/josh.promo/Code/ColdAuth.gif",
+  "https://gojilzafapjkmacdfisx.supabase.co/storage/v1/object/public/josh.promo/Code/Alteritor.gif",
+  "https://gojilzafapjkmacdfisx.supabase.co/storage/v1/object/public/josh.promo/Code/Spuntu.gif",
+  "https://gojilzafapjkmacdfisx.supabase.co/storage/v1/object/public/josh.promo/Code/Terve.gif",
+  // Add more image URLs as needed
+];
+
+const cardTitles = [
+  "Myrlin",
+  "HemoSync",
+  "Rezarac",
+  "Vibrance",
+  "Super",
+  "SolNode",
+  "Byome",
+  "Trifecta",
+  "SerBump",
+  "Crystilite",
+  "OmniStore",
+  "SineSig",
+  "ColdAuth",
+  "Alteritor",
+  "TinCoil",
+  "Terve",
+
+
+
+  // Add more titles as needed
+];
 
 onMounted(async () => {
   try {
@@ -49,14 +83,13 @@ onMounted(async () => {
       // Your particles.js configuration
     });
 });
-
 </script>
 
 <style scoped lang="scss">
-
 .white-text {
   color: white;
 }
+
 .card-container {
   display: grid;
   gap: 5px;
@@ -68,8 +101,6 @@ onMounted(async () => {
   .card {
     flex: 1;
     height: 10vh;
-    position: flex-wrap;
-    background-color: #1b2b4e80;
     text-align: center;
     line-height: 100px;
     border-radius: 10px;
@@ -81,10 +112,22 @@ onMounted(async () => {
     text-decoration: none;
     color: rgb(255, 255, 255);
     transition: transform 0.3s ease; /* Smooth transition for hover effect */
-
     margin-top: 5vh;
-    
+    padding-bottom: 20px; /* Add padding at the bottom for the title */
+    background-position: center center; /* Center the background image */
+    background-size: cover; /* Ensure the image covers the card */
     /* Add card background-image styles as needed */
+  }
+  
+
+  .card1 {
+    background-color: #1b2b4e80; /* Card background color */
+  }
+
+  .card-title {
+    color: white;
+    font-size: 16px;
+    padding-top: 17vh;
   }
 }
 
@@ -118,10 +161,11 @@ onMounted(async () => {
 @media (min-width: 768px) {
   .github-activity-container {
     justify-content: center;
+    
   }
-  
   .github-activity-card {
     width: 94%;
   }
+  
 }
 </style>
