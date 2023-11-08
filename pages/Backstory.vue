@@ -94,15 +94,6 @@ export default {
   animation: wave 2s infinite;
 }
 
-/* Define the keyframes for the wave animation */
-@keyframes wave {
-  0%, 100% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(-4px);
-  }
-}
 
 .card-container {
   display: flex;

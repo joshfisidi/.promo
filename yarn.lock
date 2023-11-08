@@ -807,6 +807,30 @@
     unimport "^3.0.7"
     untyped "^1.3.2"
 
+"@nuxt/kit@^3.0.0", "@nuxt/kit@^3.5.3":
+  version "3.8.1"
+  resolved "https://registry.yarnpkg.com/@nuxt/kit/-/kit-3.8.1.tgz#64b3f161fdf56175af0f535c465b0c76b9730da0"
+  integrity sha512-DrhG1Z85iH68QOTkgfb0HVfM2g7+CfcMWrFWMDwck9ofyM2RXQUZyfmvMedwBnui1AjjpgpLO9078yZM+RqNUg==
+  dependencies:
+    "@nuxt/schema" "3.8.1"
+    c12 "^1.5.1"
+    consola "^3.2.3"
+    defu "^6.1.3"
+    globby "^13.2.2"
+    hash-sum "^2.0.0"
+    ignore "^5.2.4"
+    jiti "^1.21.0"
+    knitwork "^1.0.0"
+    mlly "^1.4.2"
+    pathe "^1.1.1"
+    pkg-types "^1.0.3"
+    scule "^1.0.0"
+    semver "^7.5.4"
+    ufo "^1.3.1"
+    unctx "^2.3.1"
+    unimport "^3.4.0"
+    untyped "^1.4.0"
+
 "@nuxt/kit@^3.5.1":
   version "3.7.4"
   resolved "https://registry.npmjs.org/@nuxt/kit/-/kit-3.7.4.tgz"
@@ -829,30 +853,6 @@
     ufo "^1.3.0"
     unctx "^2.3.1"
     unimport "^3.3.0"
-    untyped "^1.4.0"
-
-"@nuxt/kit@^3.5.3":
-  version "3.8.1"
-  resolved "https://registry.yarnpkg.com/@nuxt/kit/-/kit-3.8.1.tgz#64b3f161fdf56175af0f535c465b0c76b9730da0"
-  integrity sha512-DrhG1Z85iH68QOTkgfb0HVfM2g7+CfcMWrFWMDwck9ofyM2RXQUZyfmvMedwBnui1AjjpgpLO9078yZM+RqNUg==
-  dependencies:
-    "@nuxt/schema" "3.8.1"
-    c12 "^1.5.1"
-    consola "^3.2.3"
-    defu "^6.1.3"
-    globby "^13.2.2"
-    hash-sum "^2.0.0"
-    ignore "^5.2.4"
-    jiti "^1.21.0"
-    knitwork "^1.0.0"
-    mlly "^1.4.2"
-    pathe "^1.1.1"
-    pkg-types "^1.0.3"
-    scule "^1.0.0"
-    semver "^7.5.4"
-    ufo "^1.3.1"
-    unctx "^2.3.1"
-    unimport "^3.4.0"
     untyped "^1.4.0"
 
 "@nuxt/kit@^3.6.5":
@@ -4615,6 +4615,13 @@ nuxi@3.5.2:
   integrity sha512-6zkgQpMbv74vITFiu9TGe8UXsBOCxEy3Nw1/wYjRBH0p1gGLl0/rxubAeSpXw3NHQzRHTt75fYgWEGOfzPWOXQ==
   optionalDependencies:
     fsevents "~2.3.2"
+
+nuxt-icons@^3.2.1:
+  version "3.2.1"
+  resolved "https://registry.yarnpkg.com/nuxt-icons/-/nuxt-icons-3.2.1.tgz#a70456e8a310c4a46f43dcb9b113085158205d77"
+  integrity sha512-trvAFq9oWYwWEQ0qZDHVxvLK+TwOdFnoXYOXQvN1CRUlp1DBJdxC8vXO3mED2Kb+Suag+bpWLC6eXGrRwhfffQ==
+  dependencies:
+    "@nuxt/kit" "^3.0.0"
 
 nuxt-viewport@^2.0.6:
   version "2.0.6"

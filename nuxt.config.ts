@@ -2,9 +2,9 @@ export default defineNuxtConfig({
   // Alias configurations
   alias: {
     assets: "/assets",
+    icons: '/favicon.ico'
   },
   
-
   // CSS configurations
   css: ["~/assets/main.scss", "~/assets/Josh.scss"],
 
@@ -13,9 +13,10 @@ export default defineNuxtConfig({
     '@nuxt/content',
     '@nuxtjs/supabase',
     '@nuxtjs/google-fonts',
+    'nuxt-icons',
     [
       'nuxt-viewport', {
-      
+        // Viewport options can be added here
       }
     ],
   ],
@@ -27,7 +28,6 @@ export default defineNuxtConfig({
       // Add other font families if needed
     },
   },
-  
 
   // PostCSS configurations
   postcss: {
@@ -40,10 +40,11 @@ export default defineNuxtConfig({
 
   // Page transition
   app: {
-    
+    // You can configure page transitions here
   },
-   // Environment Variables Configuration
-   runtimeConfig: {
+
+  // Environment Variables Configuration
+  runtimeConfig: {
     supabaseUrl: process.env.SUPABASE_URL,
     supabaseKey: process.env.SUPABASE_KEY,
     // Add any other environment variables you need

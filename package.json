@@ -29,6 +29,7 @@
     "@vueuse/motion": "^2.0.0",
     "axios": "^1.5.0",
     "chart.js": "^4.4.0",
+    "nuxt-icons": "^3.2.1",
     "particles.js": "^2.0.0",
     "sass": "^1.6.0",
     "swiper": "^10.3.1",
