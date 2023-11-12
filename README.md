@@ -1,4 +1,4 @@
-# jOsh.Promo 🎵📊
+# jOsh.Promo 
 
 <h1 align="center" id="title">.promo</h1>
 
@@ -9,7 +9,9 @@
 
 ![.promo ](https://github.com/joshjgomes/.promo/assets/76191290/accec06b-e37a-42e0-aa9a-08da966dce51)
 
-![Static Badge](https://img.shields.io/badge/Nuxt.js-00DC82?style=for-the-badge&logo=nuxtdotjs&logoColor=%23000000&cacheSeconds=3600&link=https%3A%2F%2Fnuxt.com%2F)
+![Static Badge](https://img.shields.io/badge/Nuxt-00DC82?style=for-the-badge&logo=nuxtdotjs&logoColor=%2300DC82&labelColor=%23000000&cacheSeconds=3600&link=https%3A%2F%2Fnuxt.com%2F)
+
+
 
 
 ---
