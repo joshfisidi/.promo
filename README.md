@@ -7,6 +7,9 @@
 [![Build Status](https://travis-ci.com/yourusername/jOsh.Promo.svg?branch=main)](https://travis-ci.com/yourusername/jOsh.Promo)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
+![.promo ](https://github.com/joshjgomes/.promo/assets/76191290/3649b045-c3d8-4297-94a7-b85673729b55)
+
+
 ---
 
 ## Table of Contents 📚
