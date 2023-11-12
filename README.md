@@ -10,13 +10,21 @@
 ![.promo ](https://github.com/joshjgomes/.promo/assets/76191290/accec06b-e37a-42e0-aa9a-08da966dce51)
 
 
-[![Static Badge](https://img.shields.io/badge/Supabase-%233FCF8E?style=for-the-badge&logo=supabase&logoColor=%233FCF8E&labelColor=%23000000)](supabase.com)
-![Static Badge](https://img.shields.io/badge/Three-%23000000?style=for-the-badge&logo=threedotjs&logoColor=%23ffffff&labelColor=%23000000&color=%23ffffff)
+![Static Badge](https://img.shields.io/badge/Nuxt-%2300DC82?style=for-the-badge&logo=nuxtdotjs&logoColor=%23ffffff&labelColor=%2300DC82&cacheSeconds=3600)
 
-![Static Badge](https://img.shields.io/badge/OpenAI-%23412991?style=for-the-badge&logo=openai&logoColor=%23ffffff&labelColor=%23000000&color=%23412991)
+![Static Badge](https://img.shields.io/badge/solidity-%23363636?style=for-the-badge&logo=solidity&logoColor=%23ffffff&labelColor=%23363636&cacheSeconds=3600)
+
+![Static Badge](https://img.shields.io/badge/sass-%23CC6699?style=for-the-badge&logo=sass&logoColor=%23ffffff&labelColor=%23CC6699&cacheSeconds=3600)
+
+![Static Badge](https://img.shields.io/badge/Three-%23000000?style=for-the-badge&logo=threedotjs&logoColor=%23ffffff&labelColor=%23000000&cacheSeconds=3600)
+
+![Static Badge](https://img.shields.io/badge/supabase-%233FCF8E?style=for-the-badge&logo=supabase&logoColor=%23ffffff&labelColor=%233FCF8E&cacheSeconds=3600)
+
+![Static Badge](https://img.shields.io/badge/coinmarketcap-%23363636?style=for-the-badge&logo=coinmarketcap&logoColor=%23ffffff&labelColor=%23363636&cacheSeconds=3600)
+
 ![Static Badge](https://img.shields.io/badge/Cloudflare-%23F38020?style=for-the-badge&logo=cloudflare&logoColor=%23ffffff&labelColor=%23F38020&color=%23F38020)
 
-
+![Static Badge](https://img.shields.io/badge/chartdotjs-%23FF6384?style=for-the-badge&logo=chartdotjs&logoColor=%23ffffff&labelColor=%23FF6384&cacheSeconds=3600)
 
 
 
