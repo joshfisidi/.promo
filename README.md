@@ -1,13 +1,15 @@
 # jOsh.Promo 🎵📊
 
-![jOsh.Promo Logo](./assets/logo.png)
+<h1 align="center" id="title">.promo</h1>
 
-> A private link aggregator for the autodidact musician polymath jOsh. Built with ❤️ using Nuxt3, Chart.js, Particles.js, and Three.js.
+> 
 
 [![Build Status](https://travis-ci.com/yourusername/jOsh.Promo.svg?branch=main)](https://travis-ci.com/yourusername/jOsh.Promo)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-![.promo ](https://github.com/joshjgomes/.promo/assets/76191290/3649b045-c3d8-4297-94a7-b85673729b55)
+![.promo ](https://github.com/joshjgomes/.promo/assets/76191290/accec06b-e37a-42e0-aa9a-08da966dce51)
+
+![Static Badge](https://img.shields.io/badge/Nuxt.js-00DC82?style=for-the-badge&logo=nuxtdotjs&logoColor=%23000000&cacheSeconds=3600&link=https%3A%2F%2Fnuxt.com%2F)
 
 
 ---
