@@ -9,7 +9,7 @@
 
 ![.promo ](https://github.com/joshjgomes/.promo/assets/76191290/accec06b-e37a-42e0-aa9a-08da966dce51)
 
-[![Static Badge](https://img.shields.io/badge/Nuxt-00DC82?style=for-the-badge&logo=nuxtdotjs&logoColor=%2300DC82&labelColor=%23000000&cacheSeconds=3600)](https://nuxt.com/)
+
 [![Static Badge](https://img.shields.io/badge/Supabase-%233FCF8E?style=for-the-badge&logo=supabase&logoColor=%233FCF8E&labelColor=%23000000)](supabase.com)
 ![Static Badge](https://img.shields.io/badge/Three-%23000000?style=for-the-badge&logo=threedotjs&logoColor=%23ffffff&labelColor=%23000000&color=%23ffffff)
 
