@@ -52,7 +52,7 @@ export default {
 };
 </script>
 
-<style lang="scss">
+<style scoped lang="scss">
 
 .scale-90 {
   transform: scale(0.90);

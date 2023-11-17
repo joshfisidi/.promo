@@ -47,7 +47,7 @@
   };
   </script>
   
-  <style scoped>
+  <style scoped lang="scss">
   /* You can style the starfield container here if needed */
   #particles-js {
     position: fixed;

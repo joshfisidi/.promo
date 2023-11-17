@@ -6,7 +6,7 @@
     @touchend="handleTouchEnd"
     :class="[
       isActive ? 'expanded' : '',
-      'CollapsibleButton',
+      'Music',
       'flex',
       'justify-center',
       'text-center',
@@ -25,23 +25,24 @@
       'duration-200',
       'ease-in-out',
       'transform',
+      'hover:scale-105',
       'cursor-pointer'
     ]"
   >
-    <span v-if="!isActive"> Music </span>
-    <div v-else class="button-container">
-      <a
-        v-for="imageLink in imageLinks"
-        :key="imageLink.url"
-        :href="imageLink.url"
-        target="_blank"
-        rel="noopener noreferrer"
-        class="button-link"
-      >
-        <img :src="imageLink.image" :alt="imageLink.alt" class="button-image" loading="lazy" />
-      </a>
-    </div>
+  <span v-if="!isActive"> Music </span>
+  <div v-else class="button-container">
+    <a
+      v-for="imageLink in imageLinks"
+      :key="imageLink.url"
+      :href="imageLink.url"
+      target="_blank"
+      rel="noopener noreferrer"
+      class="button-link"
+    >
+      <img :src="imageLink.image" :alt="imageLink.alt" class="button-image" loading="lazy" />
+    </a>
   </div>
+</div>
 </template>
 
 <script setup lang="ts">
@@ -130,15 +131,17 @@ const imageLinks = [
 
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 .expanded {
   height: auto;
   padding: 1rem;
 }
 
-.CollapsibleButton {
-  transition: height 0.3s ease-in-out, padding 0.3s ease-in-out;
+.CollapsibleButton:hover {
+  transform: scale(1.05);
+  transition: transform 0.2s ease-in-out;
 }
+
 
 .button-container {
   display: flex;
@@ -161,5 +164,21 @@ const imageLinks = [
 
 .button-image:hover {
   transform: scale(1.1);
+}
+
+@media (min-width: 1280px) {
+  .Music {
+    width: 50%; /* Adjust this percentage to control the width */
+    max-width: 400px; /* Optional: You can set a max-width if needed */
+    margin: auto; /* Centers the element horizontally */
+    display: flex;
+    justify-content: center; /* Centers items along the main axis */
+    align-items: center; /* Centers items along the cross axis */
+    flex-direction: column; /* Stacks flex items vertically */
+    text-align: center; /* Centers text inside the element */
+    padding: 0.5rem;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+  }
 }
 </style>

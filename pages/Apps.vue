@@ -1,28 +1,29 @@
 <template>
   <div class="carousel-container">
-    <div class="container">
-      <div class="carousel-card">
-        <div class="carousel" @touchstart="handleTouchStart" @touchend="handleTouchEnd">
-          <div
-            v-for="(image, index) in images"
-            :key="index"
-            class="carousel-item"
-            :style="isSwiping ? { transform: `perspective(1000px) rotateY(${currentSlide * -45}deg)` } : { transform: `translateX(-${currentSlide * 100}%)` }"
-          >
-            <img :src="image.path" class="carousel-image" loading="lazy" />
-          </div>
+    <div class="carousel-card">
+      <div class="carousel" @touchstart="handleTouchStart" @touchend="handleTouchEnd">
+        <div
+          v-for="(image, index) in images"
+          :key="index"
+          class="carousel-item"
+          :style="{ transform: `translateX(-${currentSlide * 100}%)` }"
+        >
+          <img :src="image.path" class="carousel-image" loading="lazy" />
+          
+          
         </div>
+        
       </div>
+      
     </div>
+    
   </div>
+  <div>  <p class="swipe-instruction">Swipe Left</p></div>
+  
 </template>
-
 
 <script setup lang="ts">
 import { ref } from 'vue';
-import { Swiper, SwiperSlide } from "swiper/vue"
-
-import "swiper/scss";
 
 const images = ref([
   { path: '/blirce-fisidi-music-dao.PNG' },
@@ -31,89 +32,92 @@ const images = ref([
 ]);
 
 const currentSlide = ref(0);
-const isSwiping = ref(false);  // New variable to track swiping
 let touchStartX = 0;
+let touchEndX = 0;
 
 const handleTouchStart = (event: TouchEvent) => {
   touchStartX = event.touches[0].clientX;
-  isSwiping.value = true;  // Set to true when touch starts
 };
 
 const handleTouchEnd = (event: TouchEvent) => {
-  const touchEndX = event.changedTouches[0].clientX;
+  touchEndX = event.changedTouches[0].clientX;
   const touchDistance = touchEndX - touchStartX;
 
-  if (touchDistance > 50) {
-    if (currentSlide.value > 0) currentSlide.value--;
-  } else if (touchDistance < -50) {
-    if (currentSlide.value < images.value.length - 1) currentSlide.value++;
+  if (touchDistance > 50 && currentSlide.value > 0) {
+    currentSlide.value--;
+  } else if (touchDistance < -50 && currentSlide.value < images.value.length - 1) {
+    currentSlide.value++;
   }
-
-  isSwiping.value = false;  // Set to false when touch ends
 };
 </script>
 
-<style lang="scss">
-.container {
+<style scoped lang="scss">
+
+.swipe-instruction {
+  text-align: center;
+  color: #fff; /* White color for the instruction text */
+  font-size: 1rem;
+  margin-top: 1rem; /* Spacing between the carousel card and the instruction text */
+  opacity: 0; /* Start with the text invisible */
+  animation: fadeInOut 3s infinite; /* Apply the animation */
+}
+
+/* Keyframes for the fade-in and fade-out animation */
+@keyframes fadeInOut {
+  0%, 100% { opacity: 0; }
+  50% { opacity: 1; }
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .swipe-instruction {
+    font-size: 0.8rem; /* Smaller text on smaller screens */
+  }
+}
+.carousel-container {
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100vh;
-  background-color: #000000;
+  padding: 1rem; /* Add padding around the carousel for smaller screens */
 }
 
 .carousel-card {
-  width: 300px;
-  height: 400px;
-  background-color: #fff;
-  border-radius: 20px;
+  width: 100%; /* Set width to 100% for base responsiveness */
+  max-width: 300px; /* Maximum width of the card */
+  height: auto; /* Adjust height automatically based on content */
+  background-color: #1c008b; /* Dark blue background color */
+  border: 2px solid #27008b; /* Dark blue border */
+  border-radius: 20px; /* Rounded edges */
   overflow: hidden;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  display: flex; /* Use flexbox for internal alignment */
+  flex-direction: column; /* Stack children vertically */
+  flex-grow: 1; /* Allow the card to grow to fill the space */
 }
 
 .carousel {
   display: flex;
-  transition: transform 0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+  transition: transform 0.5s ease-out;
 }
 
 .carousel-item {
-  flex: 0 0 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: relative;
+  min-width: 100%; /* Ensure each item takes full width */
+  transition: transform 0.5s ease-out;
 }
 
 .carousel-image {
-  border-radius: 20px;
   width: 100%;
   height: auto;
+  display: block; /* Remove default image inline behavior */
   object-fit: cover;
+  border-radius: 20px; /* Rounded edges for images */
 }
 
-.hover-info {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
-  opacity: 0;
-  transition: opacity 0.3s ease;
-}
-
-.carousel-item:hover .hover-info {
-  opacity: 1;
-}
-
-.title,
-.description {
-  background-color: rgba(0, 0, 0, 0.7);
-  color: white;
-  padding: 10px;
-  border-radius: 5px;
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .carousel-card {
+    margin: 0 auto; /* Center the card on smaller screens */
+  }
 }
 </style>

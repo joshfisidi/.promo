@@ -4,7 +4,7 @@
       <template v-for="item in items" :key="item.index">
         <a
           :href="item.href"
-          class="w-12 h-12 sm:w-16 sm:h-16 md:w-20 md:h-20 lg:w-24 lg:h-24 xl:w-28 xl:h-28 flex items-center justify-center mx-6 circle"
+          class="w-12 h-12 sm:w-16 sm:h-16 md:w-20 md:h-20 lg:w-24 lg:h-24 xl:w-28 xl:h-28 flex items-center justify-center mx-6 active:scale-90 hover:scale-105 cursor-pointer circle"
           :class="{
             'bg-black': !isActive || (isActive && activeIndex === item.index),
             'bg-gray-500': isActive && activeIndex !== item.index,
@@ -77,7 +77,7 @@ export default {
 };
 </script>
 
-<style scoped>
+<style scoped lang="scss">
 .circle {
   border-radius: 50%;
 }
@@ -132,8 +132,8 @@ export default {
 /* Desktops */
 @media only screen and (min-width: 1281px) {
   .circle {
-    width: 28px;
-    height: 28px;
+    width: 40px;
+    height: 40px;
     margin: 0 18px;
   }
 

@@ -20,6 +20,6 @@ useSeoMeta({
   ogTitle: "j0sh.Promo",
 });
 </script>
-<style>
+<style scoped lang="scss">
 
 </style>

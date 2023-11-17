@@ -9,6 +9,7 @@
   },
   "devDependencies": {
     "@nuxt/content": "^2.6.0",
+    "@types/lodash": "^4.14.201",
     "autoprefixer": "^10.4.14",
     "nuxt": "^3.0.0",
     "nuxt-viewport": "^2.0.6",
@@ -29,12 +30,15 @@
     "@vueuse/motion": "^2.0.0",
     "axios": "^1.5.0",
     "chart.js": "^4.4.0",
+    "lodash.debounce": "^4.0.8",
+    "naive-ui": "^2.35.0",
     "nuxt-icons": "^3.2.1",
-    "particles.js": "^2.0.0",
     "sass": "^1.6.0",
     "swiper": "^10.3.1",
     "three": "^0.156.1",
+    "tsparticles": "^2.12.0",
     "vite-svg-loader": "^4.0.0",
+    "vue-chartjs": "^5.2.0",
     "vue-github-calendar": "^0.1.2",
     "vue-tilt.js": "^1.1.1"
   }

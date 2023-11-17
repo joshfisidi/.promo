@@ -1,30 +1,29 @@
 <template>
   <div>
-    <div id="tsparticles"></div>
-    <div class="github-activity-container">
-      <div class="github-activity-card">
-        <h1 class="white-text">{{ userName }}</h1>
-        <GitHubActivity />
-      </div>
+       
+
+        <ChartCard />
+   
     </div>
     <div class="card-container">
       <a
         v-for="(image, index) in cardImages"
         :key="index"
-        :href="'https://github.com/user' + (index + 1)"
+        :href="`https://github.com/user${index + 1}`"
         target="_blank"
-        class="card card1"
-        :style="{ backgroundImage: `url(${image})`, backgroundColor: '#1b2b4e80' }"
+        class="card"
+        :style="getCardStyle(image)"
       >
         <p class="card-title">{{ cardTitles[index] }}</p>
       </a>
     </div>
-  </div>
+    <div id="tsparticles"></div>
 </template>
 
 <script setup>
-import { ref, onMounted } from 'vue';
-import GitHubActivity from "@/components/GitHubActivity.vue";
+import { ref, onMounted, onUnmounted, computed } from 'vue';
+
+import ChartCard from '~/components/ChartCard.vue';
 import axios from "axios";
 
 const userName = ref("Swipe Down");
@@ -43,45 +42,61 @@ const cardImages = [
   "https://gojilzafapjkmacdfisx.supabase.co/storage/v1/object/public/josh.promo/Code/OmniStore.gif",
   "https://gojilzafapjkmacdfisx.supabase.co/storage/v1/object/public/josh.promo/Code/SineSig.gif",
   "https://gojilzafapjkmacdfisx.supabase.co/storage/v1/object/public/josh.promo/Code/ColdAuth.gif",
-  "https://gojilzafapjkmacdfisx.supabase.co/storage/v1/object/public/josh.promo/Code/Alteritor.gif",
+  "https://gojilzafapjkmacdfisx.supabase.co/storage/v1/object/public/josh.promo/Code/Altrezo.gif",
   "https://gojilzafapjkmacdfisx.supabase.co/storage/v1/object/public/josh.promo/Code/Spuntu.gif",
   "https://gojilzafapjkmacdfisx.supabase.co/storage/v1/object/public/josh.promo/Code/Terve.gif",
-  // Add more image URLs as needed
 ];
 
 const cardTitles = [
   "Myrlin",
   "HemoSync",
   "Rezarac",
-  "Vibrance",
-  "Super",
+  "Solidify",
+  "Bitwire",
   "SolNode",
   "Byome",
   "Trifecta",
-  "SerBump",
-  "Crystilite",
+  "Blirce",
+  "Itirinil",
   "OmniStore",
   "SineSig",
   "ColdAuth",
-  "Alteritor",
+  "Altrezo",
   "TinCoil",
   "Terve",
-
-
-
-  // Add more titles as needed
 ];
 
-onMounted(async () => {
-  try {
-    const response = await axios.get("https://api.github.com/users/joshjgomes");
-    userName.value = response.data.name || "Git Activity";
-  } catch (error) {
-    console.error("Error fetching GitHub user data:", error);
-  }
-  particlesJS('particles-js', {
-      // Your particles.js configuration
+const userDisplayName = computed(() => userName.value || "Git Activity");
+
+onMounted(() => {
+  axios.get("https://api.github.com/users/joshjgomes")
+    .then(response => {
+      userName.value = response.data.name;
+    })
+    .catch(error => {
+      console.error("Error fetching GitHub user data:", error);
+      // Here you could set a default value or handle the UI state
     });
+
+  if (!window.pJSDom?.length) {
+    particlesJS('tsparticles', {
+      // Your particles.js configuration here
+    });
+  }
+});
+
+onUnmounted(() => {
+  if (window.pJSDom?.length) {
+    window.pJSDom.forEach((instance) => {
+      instance.pJS.fn.vendors.destroypJS();
+      window["pJSDom"] = [];
+    });
+  }
+});
+
+const getCardStyle = (image) => ({
+  backgroundImage: `url(${image})`,
+  backgroundColor: '#1b2b4e80'
 });
 </script>
 
@@ -165,7 +180,7 @@ onMounted(async () => {
   }
   .github-activity-card {
     width: 94%;
-  }
-  
+  } 
 }
+
 </style>

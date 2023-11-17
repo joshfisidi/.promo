@@ -3,7 +3,7 @@
     <!-- Ad Video -->
     <a href="https://replacethis.com" target="_blank" class="link-wrapper">
       <div
-        class="Alert text-transparent bg-slate-900 rounded-lg px-4 py-3 mx-2 my text-white font-bold text-xs transition-all duration-200 ease-in-out transform cursor-pointer button-mask"
+        class="Ad text-transparent bg-slate-900 rounded-lg px-4 py-3 mx-2 my text-white font-bold text-xs transition-all duration-200 ease-in-out transform cursor-pointer button-mask"
         @touchstart="isActiveAd = true"
         @touchend="isActiveAd = false"
         :class="{ 'scale-90': isActiveAd }"
@@ -23,7 +23,7 @@
     <!-- Twitter Video -->
     <a href="https://twitter.com" target="_blank" class="link-wrapper">
       <div
-        class="Alert text-transparent bg-slate-900 rounded-lg px-4 py-3 mx-2 my text-white transition-all duration-200 ease-in-out transform cursor-pointer button-mask"
+        class="Ad text-transparent bg-slate-900 rounded-lg px-4 py-3 mx-2 my text-white transition-all duration-200 ease-in-out transform cursor-pointer button-mask"
         @touchstart="isActiveTwitter = true"
         @touchend="isActiveTwitter = false"
         :class="{ 'scale-90': isActiveTwitter }"
@@ -42,15 +42,16 @@
   </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import { ref } from "vue";
 </script>
 
-<style scoped>
-.Alert {
-  height: 15vh;
-}
+<style setup lang="scss">
 
+.Ad:hover {
+  transform: scale(1.05);
+  transition: transform 0.2s ease-in-out;
+}
 .iframe-container {
   width: 100%;
   height: 100%;
@@ -74,23 +75,34 @@ iframe {
 /* Media queries for responsiveness */
 
 /* Large screens (e.g., desktops) */
-@media (min-width: 1280px) {
-  a .Alert {
-    width: 45.6vw;
+@media (min-width: 2048px) {
+  a .Ad {
+    width: 9.2vw;
+    height: 9.2vw;
   }
 }
 
-/* Medium screens (e.g., tablets) */
-@media (min-width: 768px) and (max-width: 1279px) {
-  a .Alert {
-    width: 46vw;
+/* iPad Pro 12.9-inch (portrait & landscape) */
+@media (min-width: 1024px) and (max-width: 1366px) {
+   .Ad {
+    width: 43vw;
   }
 }
+
 
 /* Small screens (e.g., phones) */
-@media (max-width: 767px) {
-  a .Alert {
+@media (max-width: 430px){
+  .Ad {
     width: 41vw; /* Your initial setting */
+    height: 18vh;
+  }
+}
+
+/* for smaller monitors or portrait monitors (e.g., desktops) */
+@media (min-width: 900px) {
+  .Ad {
+    width: 44vw;
+    height: 20vh;
   }
 }
 </style>

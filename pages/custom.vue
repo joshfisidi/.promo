@@ -8,3 +8,7 @@ definePageMeta({
         <p>Custom Layout</p>
     </div>
 </template>
+
+<style scoped lang="scss">
+
+</style>

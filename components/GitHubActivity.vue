@@ -37,7 +37,7 @@ onMounted(async () => {
 });
 </script>
 
-<style lang="scss">
+<style scoped lang="scss">
 .activity-page {
   display: flex;
   justify-content: center;
