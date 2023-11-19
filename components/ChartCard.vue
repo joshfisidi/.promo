@@ -90,8 +90,6 @@ export default defineComponent({
       left: -50%;
       width: 200%;
       height: 200%;
-      background: linear-gradient(45deg, transparent, transparent 40%, rgba(255, 255, 255, 0.5));
-      animation: borderAnim 2s infinite linear;
     }
   }
 

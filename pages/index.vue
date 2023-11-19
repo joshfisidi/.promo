@@ -1,6 +1,5 @@
 <template>
  
-  <Header />
   <Josh />
   <Social />
   <Backstory />

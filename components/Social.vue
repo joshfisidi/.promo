@@ -4,7 +4,7 @@
       <template v-for="item in items" :key="item.index">
         <a
           :href="item.href"
-          class="w-12 h-12 sm:w-16 sm:h-16 md:w-20 md:h-20 lg:w-24 lg:h-24 xl:w-28 xl:h-28 flex items-center justify-center mx-6 active:scale-90 hover:scale-105 cursor-pointer circle"
+          class="w-12 h-12 sm:w-16 sm:h-16 md:w-20 md:h-20 lg:w-12 lg:h-12 xl:w-8 xl:h-8 flex items-center justify-center mx-6 active:scale-90 hover:scale-105 transition duration-300 ease-in-out cursor-pointer"
           :class="{
             'bg-black': !isActive || (isActive && activeIndex === item.index),
             'bg-gray-500': isActive && activeIndex !== item.index,
@@ -79,78 +79,48 @@ export default {
 
 <style scoped lang="scss">
 .circle {
-  border-radius: 50%;
+  @apply rounded-full;
+  width: 12vw; 
+  height: 4vh; 
+  margin: 9 6px;
+
+  @media (min-width: theme('screens.sm')) {
+    @apply w-16 h-16;
+  }
+
+  @media (min-width: theme('screens.md')) {
+    @apply w-20 h-20;
+  }
+
+  @media (min-width: theme('screens.lg')) {
+    @apply w-24 h-24;
+  }
+
+  @media (min-width: theme('screens.xl')) {
+    @apply w-28 h-28;
+  }
+
+  @media (min-width: theme('screens.2xl')) {
+    width: 70px; 
+    height: 40px;
+    margin: 18px;
+    padding-inline: 1px;
+  }
+
 }
 
 .circle-mask {
-  width: 100%;
-  height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: transform 0.2s ease-in-out;
+  @apply w-full h-full flex items-center justify-center transition-transform duration-200 ease-in-out;
 }
 
 .circle:active .circle-mask {
-  transform: scale(0.9);
+  @apply scale-90;
 }
 
 .circle-image {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  border-radius: 50%;
-}
-
-/* iPads in portrait mode */
-@media only screen and (min-device-width : 768px) and (max-device-width : 1024px) and (orientation : portrait) {
-  .circle {
-    width: 18px;
-    height: 18px;
-    margin: 0 10px;
-  }
-}
-
-/* iPads in landscape mode */
-@media only screen and (min-device-width : 768px) and (max-device-width : 1024px) and (orientation : landscape) {
-  .circle {
-    width: 22px;
-    height: 22px;
-    margin: 0 12px;
-  }
-}
-
-/* Laptops */
-@media only screen and (min-width: 1025px) and (max-width: 1280px) {
-  .circle {
-    width: 24px;
-    height: 24px;
-    margin: 0 15px;
-  }
-}
-
-/* Desktops */
-@media only screen and (min-width: 1281px) {
-  .circle {
-    width: 40px;
-    height: 40px;
-    margin: 0 18px;
-  }
-
-  .circle-mask {
-    width: 100%;
-    height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: transform 0.2s ease-in-out; /* already existing */
-  }
-  
-  .circle:active .circle-mask, .circle:active {
-    transform: scale(0.9);
-    transition: transform 0.1s ease-in-out; /* added for quick response */
-  }
-  
+  @apply w-full h-full object-cover rounded-full;
 }
 </style>
+
+
 

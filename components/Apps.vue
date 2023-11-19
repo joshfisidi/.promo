@@ -41,7 +41,8 @@ export default {
 @media (min-width: 1280px) {
   .Apps {
     width: 50%; /* Adjust this percentage to control the width */
-    max-width: 400px; /* Optional: You can set a max-width if needed */
+    max-width: 30vw;
+    max-height: 100vh; /* Optional: You can set a max-width if needed */
     margin: auto; /* Centers the element horizontally */
     display: flex;
     justify-content: center; /* Centers items along the main axis */

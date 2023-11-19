@@ -23,7 +23,7 @@
       <div class="modal-content">
         <header class="modal-header">
           <p class="modal-title">Subscribe for updates</p>
-          <button class="close-modal" @click="closeModal">X</button>
+          <button class="bg-slate-800 hover:bg-slate-700 text-white text-sm font-bold py px-2 rounded" @click="closeModal">X</button>
         </header>
         <section class="modal-body">
           <form @submit.prevent="submitSubscription">
@@ -116,6 +116,9 @@ onMounted(() => {
   width: 100%;
   height: 100%;
   background-color: rgba(0,0,0,0.5);
+  //blur it
+  @apply fixed inset-0 bg-black bg-opacity-50; // Full-screen overlay with semi-transparent black background
+  backdrop-filter: blur(5px); // Blurring effect
 }
 
 .modal-content {

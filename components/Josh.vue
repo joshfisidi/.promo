@@ -36,7 +36,7 @@ export default {
     image: {
       type: String,
       required: true,
-      default: "https://joshjgomes.github.io/assets/josh-joshjgomes-yashguma-fisidi.GIF" // This is a placeholder image
+      default: "https://gojilzafapjkmacdfisx.supabase.co/storage/v1/object/public/josh.promo/Users/joshjgomes-fisidi.gif" // This is a placeholder image
     },
     title: {
       type: String,

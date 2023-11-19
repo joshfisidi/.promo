@@ -75,16 +75,6 @@ const handleTouchStart = (event: TouchEvent) => {
     showElement.value = false;
   }
 };
-
-onMounted(() => {
-  window.addEventListener("scroll", handleScroll);
-  window.addEventListener("touchstart", handleTouchStart);
-});
-
-onUnmounted(() => {
-  window.removeEventListener("scroll", handleScroll);
-  window.removeEventListener("touchstart", handleTouchStart);
-});
 </script>
 
 

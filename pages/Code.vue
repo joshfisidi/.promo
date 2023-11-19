@@ -1,186 +1,82 @@
 <template>
-  <div>
-       
+  <transition name="fade">
+    <div class="Code flex justify-center text-center flex-col bg-slate-900 rounded px-4 py-2 mx-7 sm:mx-10 md:mx-16 lg:mx-20 my-4 text-white font-bold mby-2 transition-all duration-200 ease-in-out transform active:scale-90 hover:scale-105 cursor-pointer" @click="toggleModal">
+      Code
+    </div>
+  </transition>
 
-        <ChartCard />
-   
+  <div v-if="isModalOpen" class="modal bg-slate-800">
+    <div class="modal-content bg-slate-800 p-4 rounded-lg shadow-lg w-full sm:w-11/12 md:w-10/12 lg:w-9/12 xl:w-8/12 2xl:w-7/12 max-w-4xl mx-auto">
+      <!-- Flexbox Grid layout -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+        <!-- Example cards inside the grid -->
+        <a href="https://gojilzafapjkmacdfisx.supabase.co/storage/v1/object/public/josh.promo/Code/ColdAuth.gif" target="_blank" class="card bg-slate-800 rounded-lg p-3">
+          <h3 class="card-title">Card 1</h3>
+          <p>hey...</p>
+          <img src="https://gojilzafapjkmacdfisx.supabase.co/storage/v1/object/public/josh.promo/Code/ColdAuth.gif" alt="Card Image" class="w-full rounded-lg mt-2">
+        </a>
+        <!-- Repeat the card structure for other cards as needed -->
+      </div>
     </div>
-    <div class="card-container">
-      <a
-        v-for="(image, index) in cardImages"
-        :key="index"
-        :href="`https://github.com/user${index + 1}`"
-        target="_blank"
-        class="card"
-        :style="getCardStyle(image)"
-      >
-        <p class="card-title">{{ cardTitles[index] }}</p>
-      </a>
-    </div>
-    <div id="tsparticles"></div>
+  </div>
 </template>
 
-<script setup>
-import { ref, onMounted, onUnmounted, computed } from 'vue';
+<script>
+import { ref } from "vue";
 
-import ChartCard from '~/components/ChartCard.vue';
-import axios from "axios";
+export default {
+  setup() {
+    const isModalOpen = ref(false);
 
-const userName = ref("Swipe Down");
+    const toggleModal = () => {
+      isModalOpen.value = !isModalOpen.value;
+    };
 
-const cardImages = [
-  "https://gojilzafapjkmacdfisx.supabase.co/storage/v1/object/public/josh.promo/Code/Myrlin.gif",
-  "https://gojilzafapjkmacdfisx.supabase.co/storage/v1/object/public/josh.promo/Code/HemoSync.gif",
-  "https://gojilzafapjkmacdfisx.supabase.co/storage/v1/object/public/josh.promo/Code/rezarac.gif",
-  "https://gojilzafapjkmacdfisx.supabase.co/storage/v1/object/public/josh.promo/Code/Vibrance.gif",
-  "https://gojilzafapjkmacdfisx.supabase.co/storage/v1/object/public/josh.promo/Code/Super.gif",
-  "https://gojilzafapjkmacdfisx.supabase.co/storage/v1/object/public/josh.promo/Code/SolNode.gif",
-  "https://gojilzafapjkmacdfisx.supabase.co/storage/v1/object/public/josh.promo/Code/Byome.gif",
-  "https://gojilzafapjkmacdfisx.supabase.co/storage/v1/object/public/josh.promo/Code/Trifecta.gif",
-  "https://gojilzafapjkmacdfisx.supabase.co/storage/v1/object/public/josh.promo/Code/Serbump.gif",
-  "https://gojilzafapjkmacdfisx.supabase.co/storage/v1/object/public/josh.promo/Code/Crystilite.gif",
-  "https://gojilzafapjkmacdfisx.supabase.co/storage/v1/object/public/josh.promo/Code/OmniStore.gif",
-  "https://gojilzafapjkmacdfisx.supabase.co/storage/v1/object/public/josh.promo/Code/SineSig.gif",
-  "https://gojilzafapjkmacdfisx.supabase.co/storage/v1/object/public/josh.promo/Code/ColdAuth.gif",
-  "https://gojilzafapjkmacdfisx.supabase.co/storage/v1/object/public/josh.promo/Code/Altrezo.gif",
-  "https://gojilzafapjkmacdfisx.supabase.co/storage/v1/object/public/josh.promo/Code/Spuntu.gif",
-  "https://gojilzafapjkmacdfisx.supabase.co/storage/v1/object/public/josh.promo/Code/Terve.gif",
-];
-
-const cardTitles = [
-  "Myrlin",
-  "HemoSync",
-  "Rezarac",
-  "Solidify",
-  "Bitwire",
-  "SolNode",
-  "Byome",
-  "Trifecta",
-  "Blirce",
-  "Itirinil",
-  "OmniStore",
-  "SineSig",
-  "ColdAuth",
-  "Altrezo",
-  "TinCoil",
-  "Terve",
-];
-
-const userDisplayName = computed(() => userName.value || "Git Activity");
-
-onMounted(() => {
-  axios.get("https://api.github.com/users/joshjgomes")
-    .then(response => {
-      userName.value = response.data.name;
-    })
-    .catch(error => {
-      console.error("Error fetching GitHub user data:", error);
-      // Here you could set a default value or handle the UI state
-    });
-
-  if (!window.pJSDom?.length) {
-    particlesJS('tsparticles', {
-      // Your particles.js configuration here
-    });
-  }
-});
-
-onUnmounted(() => {
-  if (window.pJSDom?.length) {
-    window.pJSDom.forEach((instance) => {
-      instance.pJS.fn.vendors.destroypJS();
-      window["pJSDom"] = [];
-    });
-  }
-});
-
-const getCardStyle = (image) => ({
-  backgroundImage: `url(${image})`,
-  backgroundColor: '#1b2b4e80'
-});
+    return {
+      isModalOpen,
+      toggleModal,
+    };
+  },
+};
 </script>
 
 <style scoped lang="scss">
-.white-text {
-  color: white;
+.modal {
+  @apply fixed inset-0 flex items-center justify-center bg-opacity-50 z-50;
 }
 
-.card-container {
-  display: grid;
-  gap: 5px;
-  padding-inline: 1vw;
-  row-gap: 15px;
-  grid-template-columns: repeat(4, 1fr); /* Create 4 columns */
-  align-items: center;
+.modal-content {
+  @apply bg-slate-800 p-4 rounded-lg shadow-lg;
+  width: 90%;
+  max-width: 1000px; // Adjust based on your requirement
+}
 
-  .card {
-    flex: 1;
-    height: 10vh;
-    text-align: center;
-    line-height: 100px;
-    border-radius: 10px;
-    margin: 0 10px;
+/* Removed the .grid class styles as they are not needed for Flexbox Grid */
+
+.card {
+  position: relative;
+}
+
+.scale-90 {
+  transform: scale(0.9);
+  &:hover {
+    background-color: #ff05ea; // A slightly darker blue on hover
+  }
+}
+
+@media (min-width: 1280px) {
+  .Code {
+    width: 50%; /* Adjust this percentage to control the width */
+    max-width: 30vw; /* Optional: You can set a max-width if needed */
+    margin: auto; /* Centers the element horizontally */
     display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    text-decoration: none;
-    color: rgb(255, 255, 255);
-    transition: transform 0.3s ease; /* Smooth transition for hover effect */
-    margin-top: 5vh;
-    padding-bottom: 20px; /* Add padding at the bottom for the title */
-    background-position: center center; /* Center the background image */
-    background-size: cover; /* Ensure the image covers the card */
-    /* Add card background-image styles as needed */
-  }
-  
-
-  .card1 {
-    background-color: #1b2b4e80; /* Card background color */
-  }
-
-  .card-title {
-    color: white;
-    font-size: 16px;
-    padding-top: 17vh;
+    justify-content: center; /* Centers items along the main axis */
+    align-items: center; /* Centers items along the cross axis */
+    flex-direction: column; /* Stacks flex items vertically */
+    text-align: center; /* Centers text inside the element */
+    padding: 0.5rem;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
   }
 }
-
-.card:hover {
-  transform: scale(1.05); /* Scale up card to 105% when hovered */
-}
-
-.github-activity-container {
-  display: flex;
-  align-self: flex-start;
-  overflow-wrap: max;
-}
-
-.github-activity-card {
-  background-color: #1b2b4e80;
-  font-weight: 900;
-  font-family: Verdana, Geneva, Tahoma, sans-serif;
-  padding: 20px;
-  margin: 20px;
-  border-radius: 12px;
-  width: 94%;
-  justify-content: center;
-  max-height: 10vh;
-  max-width: 100vw;
-  box-shadow: 0 0 10px rgba(213, 210, 210, 0.1);
-  overflow-y: auto;
-  align-self: flex-start;
-}
-
-/* Media query for screens wider than 768px */
-@media (min-width: 768px) {
-  .github-activity-container {
-    justify-content: center;
-    
-  }
-  .github-activity-card {
-    width: 94%;
-  } 
-}
-
 </style>

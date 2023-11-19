@@ -3,15 +3,14 @@
     <!-- Ad Video -->
     <a href="https://replacethis.com" target="_blank" class="link-wrapper">
       <div
-        class="Ad text-transparent bg-slate-900 rounded-lg px-4 py-3 mx-2 my text-white font-bold text-xs transition-all duration-200 ease-in-out transform cursor-pointer button-mask"
+        class="ad bg-slate-900 rounded-lg px-4 py-3 mx-2 my-1 text-white font-bold text-xs transition-all duration-200 ease-in-out transform cursor-pointer button-mask"
         @touchstart="isActiveAd = true"
         @touchend="isActiveAd = false"
         :class="{ 'scale-90': isActiveAd }"
       >
         <div class="iframe-container">
           <iframe
-            width="100%"
-            height="100%"
+            class="w-full h-full"
             src="https://www.youtube.com/embed/YAmt4qNq3X4"
             frameborder="0"
             allowfullscreen
@@ -23,15 +22,14 @@
     <!-- Twitter Video -->
     <a href="https://twitter.com" target="_blank" class="link-wrapper">
       <div
-        class="Ad text-transparent bg-slate-900 rounded-lg px-4 py-3 mx-2 my text-white transition-all duration-200 ease-in-out transform cursor-pointer button-mask"
+        class="ad bg-slate-900 rounded-lg px-4 py-3 mx-2 my-1 text-white transition-all duration-200 ease-in-out transform cursor-pointer button-mask"
         @touchstart="isActiveTwitter = true"
         @touchend="isActiveTwitter = false"
         :class="{ 'scale-90': isActiveTwitter }"
       >
         <div class="iframe-container">
           <iframe
-            width="100%"
-            height="100%"
+            class="w-full h-full"
             src="https://www.youtube.com/embed/WkXJpoC1Me0"
             frameborder="0"
             allowfullscreen
@@ -44,65 +42,63 @@
 
 <script setup lang="ts">
 import { ref } from "vue";
+const isActiveAd = ref(false);
+const isActiveTwitter = ref(false);
 </script>
 
-<style setup lang="scss">
+<style scoped lang="scss">
+.ad {
+  @apply hover:scale-105;
+  width: 44vw; // Default width
+  height: 20vh; // Default height
 
-.Ad:hover {
-  transform: scale(1.05);
-  transition: transform 0.2s ease-in-out;
-}
-.iframe-container {
-  width: 100%;
-  height: 100%;
-  border-radius: 10px; /* Rounded edges for the container */
-  overflow: hidden; /* Clip the rounded edges */
-  position: relative; /* Needed for positioning */
-}
+  @media (min-width: theme('screens.lg')) {
+    width: 20vw;
+  }
 
-iframe {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  top: 0;
-  left: 0;
-}
-
-.link-wrapper {
-  text-decoration: none; /* Remove the default underline on links */
-}
-
-/* Media queries for responsiveness */
-
-/* Large screens (e.g., desktops) */
-@media (min-width: 2048px) {
-  a .Ad {
-    width: 9.2vw;
+  @media (min-width: theme('screens.xl')) {
+    width: 14.5vw;
     height: 9.2vw;
   }
-}
 
-/* iPad Pro 12.9-inch (portrait & landscape) */
-@media (min-width: 1024px) and (max-width: 1366px) {
-   .Ad {
-    width: 43vw;
+  @media (max-width: theme('screens.md')) {
+    width: 39.5vw;
+    height: 25.2vw;
   }
-}
+
+  @media (max-width: theme('screens.sm')) {
+    width: 43.3vw;
+    height: 24.2vw;
+    margin-bottom: 4rem;
+  }
+
+  @media (min-width: theme('screens.2xl')) {
+    width: 20px; 
+    height: 40px;
+    margin: 18px;
+    padding-inline: 1px;
+  }
 
 
-/* Small screens (e.g., phones) */
-@media (max-width: 430px){
-  .Ad {
-    width: 41vw; /* Your initial setting */
+  // Extra small devices (phones)
+  @media (min-width: 768px) {
+    width: 41vw;
+    a .ad {
+      width: 10vw;
+    }
     height: 18vh;
   }
 }
 
-/* for smaller monitors or portrait monitors (e.g., desktops) */
-@media (min-width: 900px) {
-  .Ad {
-    width: 44vw;
-    height: 20vh;
-  }
+.iframe-container {
+  @apply w-full h-full rounded-lg overflow-hidden relative;
+}
+
+iframe {
+  @apply absolute top-0 left-0 w-full h-full;
+}
+
+.link-wrapper {
+  @apply no-underline;
 }
 </style>
