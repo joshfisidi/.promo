@@ -1,60 +1,89 @@
 <template>
-  <div class="Josh flex items-center justify-center">
+  <div class="top-container flex items-start justify-center px-4">
     <div
-      class="m-8 transition-all duration-200 ease-in-out transform active:scale-90 cursor-pointer"
-      @contextmenu.prevent
-      @mousedown.prevent
-      @mouseup.prevent
-      @mouseleave.prevent
-      @touchstart.prevent
-      @touchend.prevent
-      :class="{ 'scale-90': isActive }"
+      class="coin m-8 transition-all duration-500 ease-in-out transform active:scale-90 cursor-pointer" style="padding-bottom: 0px;padding-top: 0px;"
+      @click="flipCoin"
+      :class="{ heads: isHeads, tails: isTails }"
     >
       <div class="flex flex-col items-center text-center">
         <div class="md:flex-shrink-0">
-          <div class="w-24 h-24 md:w-24 md:h-24 flex items-center justify-center" @touchstart="isActive = true" @touchend="isActive = false">
+          <div class="w-24 h-24 md:w-24 md:h-24 flex items-center justify-center">
             <img class="object-cover w-full h-full rounded-full" :src="image" :alt="title" />
           </div>
-        </div>
-        <div class="px-8 py-6">
-          <div class="fade-text font-extrabold tracking-wide text-sm text-white">{{ title }}</div>
-          <p class="mt-2 text-gray-300 text-base">{{ description }}</p>
         </div>
       </div>
     </div>
   </div>
 </template>
 
+
 <script>
 export default {
   data() {
     return {
-      isActive: false
+      isHeads: false,
+      isTails: false,
+      image: 'https://gojilzafapjkmacdfisx.supabase.co/storage/v1/object/public/josh.promo/Users/joshjgomes-fisidi.gif', // Replace with your image URL
     };
   },
-  props: {
-    image: {
-      type: String,
-      required: true,
-      default: "https://gojilzafapjkmacdfisx.supabase.co/storage/v1/object/public/josh.promo/Users/joshjgomes-fisidi.gif" // This is a placeholder image
-    },
-    title: {
-      type: String,
-      required: true,
-      default: "jOsh" // This is a placeholder title
-    },
-    description: {
-      type: String,
-      required: true,
-      default: "Musician/Developer" // This is a placeholder description
+  methods: {
+    flipCoin() {
+      this.isHeads = false;
+      this.isTails = false;
+
+      const flipResult = Math.random();
+      setTimeout(() => {
+        if (flipResult <= 0.5) {
+          this.isHeads = true;
+        } else {
+          this.isTails = true;
+        }
+      }, 100);
     }
   }
 };
 </script>
 
-<style scoped lang="scss">
 
-.scale-90 {
-  transform: scale(0.90);
+<style scoped lang="scss">
+@keyframes flip-heads {
+  from { transform: rotateY(0deg); }
+  to { transform: rotateY(1800deg); }
+}
+
+@keyframes flip-tails {
+  from { transform: rotateY(0deg); }
+  to { transform: rotateY(-1800deg); }
+}
+
+.top-container {
+  min-height: 22vh;  // Full viewport height
+  padding-top: 3px;  // Adjust the top padding as needed
+  padding-bottom: 3vh;
+  @media (max-width: 640px) { // Example breakpoint for mobile devices
+    padding-top: 10px;
+  }
+  }
+
+.coin {
+  width: 3vw;
+  height: 3vh;
+  min-height: 10vh;  // Full viewport height
+  padding-top: 2vh;  // Adjust the top padding as needed
+  padding-bottom: 13vh;
+
+  &.heads, &.tails {
+    transform-style: preserve-3d;
+    position: relative;
+  }
+
+  &.heads {
+    animation: flip-heads 2s forwards;
+  }
+
+  &.tails {
+    animation: flip-tails 2s forwards;
+  }
+  
 }
 </style>

@@ -1,6 +1,7 @@
 <template>
  
   <Josh />
+  <Description />
   <Social />
   <Backstory />
   <Music />

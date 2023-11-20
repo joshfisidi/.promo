@@ -25,14 +25,14 @@
           <p class="modal-title">Subscribe for updates</p>
           <button class="bg-slate-800 hover:bg-slate-700 text-white text-sm font-bold py px-2 rounded" @click="closeModal">X</button>
         </header>
-        <section class="modal-body">
+        <section class="modal-body ">
           <form @submit.prevent="submitSubscription">
             <input type="text" v-model="contactInfo" placeholder="Enter your email or phone" class="input-field" required>
-            <button type="submit" class="submit-button">Submit</button>
+            <button type="submit" class="submit-button">Subscribe</button>
           </form>
         </section>
         <footer class="modal-footer">
-          <button class="close-button" @click="closeModal">Close</button>
+          <button class="close-button font-bold text-base text-white" @click="closeModal">ⓘ</button>
         </footer>
       </div>
     </div>

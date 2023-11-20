@@ -78,32 +78,71 @@ const handleTouchStart = (event: TouchEvent) => {
 </script>
 
 
-<style lang="scss" scoped>
-/* Add your existing styles here */
-
+<style scoped lang="scss">
 .hidden {
   display: none;
 }
 
+/* Assuming your TailwindCSS breakpoints are as follows:
+   'sm': '640px', 'md': '768px', 'lg': '1024px', 'xl': '1280px', '2xl': '1536px' */
 
-/* Styles for screens with a minimum width of 2048px */
-@media (min-width: 2048px) {
-  /* Styles specific to this viewport size */
-  .footer-container {
-    padding-bottom: 45vw;
-
-    /* Example: Adjust the padding or layout of the footer */
-    padding: 20rem;
-    /* Additional styles as needed */
+/* Styles for lg screens and above */
+@media (min-width: 1024px) {
+  .footer-button {
+    @apply hover:scale-105;
+    width: 20vw;
+    padding-top: 10ch;
+    /* Other styles for lg screens */
   }
-
-  /* You can target other elements within your component as well */
 }
 
-/* Safari-specific styles */
-body, html, #app {
-  height: -webkit-fill-available;
+/* Styles for xl screens and above */
+@media (min-width: 1280px) {
+  .footer-button {
+    width: 14.5vw;
+    height: 9.2vw;
+    /* Other styles for xl screens */
+  }
 }
 
+/* Styles for screens smaller than md */
+@media (max-width: 767px) {
+  .footer-button {
+    width: 39.5vw;
+    height: 25.2vw;
+    /* Other styles for screens smaller than md */
+  }
+}
 
+/* Styles for screens smaller than sm */
+@media (max-width: 639px) {
+  .footer-button {
+    width: 43.3vw;
+    height: 24.2vw;
+    margin-bottom: 4rem;
+    /* Other styles for screens smaller than sm */
+  }
+}
+
+/* Styles for 2xl screens and above */
+@media (min-width: 1536px) {
+  .footer-button {
+    width: 20px;
+    height: 40px;
+    margin: 18px;
+    padding-inline: 1px;
+    /* Other styles for 2xl screens and above */
+  }
+}
+
+/* Extra small devices (phones) */
+@media (min-width: 768px) {
+  .footer-button {
+    width: 41vw;
+    height: 18vh;
+    /* Other styles for extra small devices */
+  }
+}
+
+/* Add other styles as needed... */
 </style>

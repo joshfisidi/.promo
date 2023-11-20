@@ -1,5 +1,5 @@
 <template>
-  <div class="flex justify-center">
+  <div class="flex justify-center" style="margin-bottom: 0px;border-bottom-width: 0px;padding-top: 0px;padding-bottom: 5px;">
     <!-- Ad Video -->
     <a href="https://replacethis.com" target="_blank" class="link-wrapper">
       <div
@@ -59,17 +59,20 @@ const isActiveTwitter = ref(false);
   @media (min-width: theme('screens.xl')) {
     width: 14.5vw;
     height: 9.2vw;
+    padding-bottom: 5px;
   }
 
   @media (max-width: theme('screens.md')) {
     width: 39.5vw;
     height: 25.2vw;
+    padding-bottom: 5px;
   }
 
   @media (max-width: theme('screens.sm')) {
     width: 43.3vw;
     height: 24.2vw;
     margin-bottom: 4rem;
+    padding-bottom: 9px;
   }
 
   @media (min-width: theme('screens.2xl')) {
@@ -77,6 +80,7 @@ const isActiveTwitter = ref(false);
     height: 40px;
     margin: 18px;
     padding-inline: 1px;
+    padding-bottom: 5px;
   }
 
 
