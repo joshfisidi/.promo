@@ -1,50 +1,44 @@
-
 <template>
   <div>
     <!-- Your existing layout content here -->
 
     <!-- Footer buttons -->
-     
-    <div 
-    class="fixed bottom-0 w-full" 
-    :class="{ hidden: !showElement }"
-    ref="footerRef"
-  >
-    <div class="fixed bottom-0 w-full" :class="{ hidden: !showElement }">
-      <div class="px-7">
-        <div class="flex -mx-2 justify-center">
-          <div class="w-1/3 px-2">
-            <nuxt-link to="/tools">
-              <button
-                class="w-full bg-slate-900 h-12 rounded-md text-white transition duration-500 ease-in-out hover:bg-gray-600 focus:outline-none focus:ring-2 focus:ring-gray-600 active:bg-gray-700"
-              >
-                Tools
-              </button>
-            </nuxt-link>
-          </div>
-          <div class="w-1/3 px-2">
-            <nuxt-link to="/papers">
-              <button
-                class="w-full bg-slate-900 h-12 rounded-md text-white transition duration-500 ease-in-out hover:bg-gray-600 focus:outline-none focus:ring-2 focus:ring-gray-600 active:bg-gray-700"
-              >
-                Papers
-              </button>
-            </nuxt-link>
-          </div>
-          <div class="w-1/3 px-2">
-            <nuxt-link to="/books">
-              <button
-                class="w-full bg-slate-900 h-12 rounded-md text-white transition duration-500 ease-in-out hover:bg-gray-600 focus:outline-none focus:ring-2 focus:ring-gray-600 active:bg-gray-700"
-              >
-                Books
-              </button>
-            </nuxt-link>
+ 
+      <div class="w-full fixed bottom-0 mb-2" :class="{ hidden: !showElement }">
+        <div class="px-7">
+          <div class="flex -mx-2 justify-center">
+            <div class="w-1/2 px-2">
+              <nuxt-link to="/tools">
+                <button
+                  class="border-b border-slate-700 w-full hover:mt-1 duration-300 bg-gray-900 h-10 rounded-md text-white hover:bg-gray-600 focus:outline-none focus:ring-2 focus:ring-gray-600 active:bg-gray-700"
+                >
+                  Tools
+                </button>
+              </nuxt-link>
+            </div>
+            <div class="w-1/2 px-0">
+              <nuxt-link to="/papers">
+                <button
+                  class="border-b border-slate-700 w-full hover:mt-1 duration-300 bg-gray-900 h-10 rounded-md text-white hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-gray-600 active:bg-gray-700"
+                >
+                  Papers
+                </button>
+              </nuxt-link>
+            </div>
+            <div class="w-1/2 px-2">
+              <nuxt-link to="/books">
+                <button
+                  class="border-b border-slate-700 w-full hover:mt-1 duration-300 bg-gray-900 h-10 rounded-md text-white hover:bg-gray-600 focus:outline-none focus:ring-2 focus:ring-gray-600 active:bg-gray-700"
+                >
+                  Books
+                </button>
+              </nuxt-link>
+            </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
-  </div>
+  
 </template>
 
 <script setup lang="ts">
@@ -77,8 +71,14 @@ const handleTouchStart = (event: TouchEvent) => {
 };
 </script>
 
-
 <style scoped lang="scss">
+
+.fixed-footer {
+  position: fixed;
+  bottom: 50px; /* Push up by 50px */
+  width: 100%;
+  /* Other necessary styling */
+}
 .hidden {
   display: none;
 }

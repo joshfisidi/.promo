@@ -3,7 +3,7 @@
     <!-- Ad Video -->
     <a href="https://replacethis.com" target="_blank" class="link-wrapper">
       <div
-        class="ad bg-slate-900 rounded-lg px-4 py-3 mx-2 my-1 text-white font-bold text-xs transition-all duration-200 ease-in-out transform cursor-pointer button-mask"
+        class="ad bg-slate-900 rounded-lg px-4 py-3 mx-2 my-1 p-8 justify-items-center text-white font-bold text-xs transition-all duration-200 ease-in-out transform cursor-pointer button-mask"
         @touchstart="isActiveAd = true"
         @touchend="isActiveAd = false"
         :class="{ 'scale-90': isActiveAd }"
@@ -57,7 +57,7 @@ const isActiveTwitter = ref(false);
   }
 
   @media (min-width: theme('screens.xl')) {
-    width: 14.5vw;
+    width: 43.5vw;
     height: 9.2vw;
     padding-bottom: 5px;
   }
@@ -68,12 +68,7 @@ const isActiveTwitter = ref(false);
     padding-bottom: 5px;
   }
 
-  @media (max-width: theme('screens.sm')) {
-    width: 43.3vw;
-    height: 24.2vw;
-    margin-bottom: 4rem;
-    padding-bottom: 9px;
-  }
+
 
   @media (min-width: theme('screens.2xl')) {
     width: 20px; 
@@ -83,13 +78,20 @@ const isActiveTwitter = ref(false);
     padding-bottom: 5px;
   }
 
+  @media (min-width: theme('screens.3xl',)) {
+    width: 36vw; 
+    height: 40dvh;
+
+  }
+
 
   // Extra small devices (phones)
-  @media (min-width: 768px) {
-    width: 41vw;
+  @media (min-width: 650px) and (max-width: 750px){
+    width: 20px;
+    height: 40px;
     a .ad {
       width: 10vw;
-    }
+    } 
     height: 18vh;
   }
 }

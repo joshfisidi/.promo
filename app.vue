@@ -4,11 +4,12 @@
       <Header />
       <NuxtPage />
     </NuxtLayout>
-    <Footer class="py-3" /> <!-- Add Tailwind padding class here -->
+    <Footer /> <!-- Add Tailwind padding class here -->
   </div>
 </template>
 
 <script setup lang="ts">
+
 // Example in a TypeScript file (e.g., ts file in your Nuxt project)
 const supabaseUrl: string | undefined = process.env.SUPABASE_URL;
 const supabaseKey: string | undefined = process.env.SUPABASE_KEY;

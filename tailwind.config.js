@@ -36,13 +36,12 @@ module.exports = {
       },
       // Define your custom breakpoints here
       screens: {
-        'xs': '460px',
         'sm': '640px',
         'md': '768px',
         'lg': '1024px',
         'xl': '1280px',
         '2xl': '1536px',
-        '3xl': '2040px',
+        '3xl': '2048px',
         // Add other custom breakpoints if needed
       },
     },

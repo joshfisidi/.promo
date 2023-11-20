@@ -2,8 +2,8 @@
   <nuxt-link
     @touchstart="isActive = true"
     @touchend="isActive = false"
-    :class="['Capital', { 'scale-90': isActive, 'bg-cyan-600': isActive }]"
-    class="flex justify-center text-center flex-col bg-slate-900 rounded px-2 py-1 mx-7 lg:mx-20 my-4 text-white font-bold mby-2 transition-all duration-200 ease-in-out transform active:scale-90 hover:scale-105 cursor-pointer"
+    :class="{ 'scale-90': isActive }"
+    class="Capital flex justify-center text-center flex-col bg-slate-900 rounded px-4 py-2 mx-7 lg:mx-20 my-4 text-white font-bold mby-2 transition-all duration-200 ease-in-out transform active:scale-90 hover:scale-105 cursor-pointer"
     style="
       -webkit-touch-callout: none;
       -webkit-user-select: none;
@@ -20,15 +20,16 @@
 
 <script>
 import { ref } from "vue";
-import Starfield from '@/components/Starfield.vue'; // Update the path as needed
 
 export default {
-  components: {
-    Starfield,
+  setup() {
+    const isActive = ref(false);
+
+    return {
+      isActive,
+    };
   },
 };
-
-const isActive = ref(false);
 </script>
 
 <style scoped lang="scss">
@@ -36,9 +37,6 @@ const isActive = ref(false);
   transform: scale(0.9);
 }
 
-.bg-cyan-600 {
-  background-color: #034b4f;
-}
 
 @media (min-width: 1280px) {
   .Capital {
@@ -55,4 +53,5 @@ const isActive = ref(false);
     margin-bottom: 1rem;
   }
 }
+
 </style>

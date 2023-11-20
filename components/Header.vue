@@ -23,7 +23,7 @@
       <div class="modal-content">
         <header class="modal-header">
           <p class="modal-title">Subscribe for updates</p>
-          <button class="bg-slate-800 hover:bg-slate-700 text-white text-sm font-bold py px-2 rounded" @click="closeModal">X</button>
+          <button class="hover:bg-slate-800 p-0 px-1 hover:rounded-full hover:text-white text-black text-sm font-bold" @click="closeModal">X</button>
         </header>
         <section class="modal-body ">
           <form @submit.prevent="submitSubscription">
@@ -183,7 +183,7 @@ onMounted(() => {
   width: 100%; // Full width to match input fields
   padding: 10px 15px; // Padding for a taller, more clickable button
   margin-top: 1rem; // Margin on top to separate from the input field
-  background-color: #008d97; // A nice blue from the Tailwind CSS palette
+  background-color: #000000; // A nice blue from the Tailwind CSS palette
   color: #ffffff; // White text for contrast
   border: none; // No border for a flat design
   border-radius: 0.375rem; // Matching border radius to the input field
@@ -194,7 +194,7 @@ onMounted(() => {
   transition: background-color 0.3s; // Smooth background color transition
 
   &:hover {
-    background-color: #ff05ea; // A slightly darker blue on hover
+    background-color: #343548; // A slightly darker blue on hover
   }
 };
 
@@ -259,3 +259,9 @@ onMounted(() => {
   }
 }
 </style>
+
+
+
+iPhone 14 Pro Max
+430 x 932
+3
