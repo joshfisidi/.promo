@@ -1,4 +1,5 @@
 <template>
+
   <div class="flex justify-center" style="margin-bottom: 0px;border-bottom-width: 0px;padding-top: 0px;padding-bottom: 5px;">
     <!-- Ad Video -->
     <a href="https://replacethis.com" target="_blank" class="link-wrapper">
@@ -10,7 +11,7 @@
       >
         <div class="iframe-container">
           <iframe
-            class="w-full h-full"
+            class="w-full h-full p3 rounded"
             src="https://www.youtube.com/embed/YAmt4qNq3X4"
             frameborder="0"
             allowfullscreen
@@ -49,50 +50,62 @@ const isActiveTwitter = ref(false);
 <style scoped lang="scss">
 .ad {
   @apply hover:scale-105;
-  width: 44vw; // Default width
-  height: 20vh; // Default height
+  width: 44vw; // Default width for mobile
+  height: 20vh; // Default height for mobile
+
+  @media (min-width: theme('screens.sm')) {
+    // Styles for sm screens and larger
+  }
+
+  @media (min-width: theme('screens.md')) {
+    // Styles for md screens and larger
+    width: 39.5vw;
+    height: 18.2vw;
+  }
 
   @media (min-width: theme('screens.lg')) {
+    // Styles for lg screens and larger
     width: 20vw;
   }
 
   @media (min-width: theme('screens.xl')) {
-    width: 43.5vw;
-    height: 9.2vw;
-    padding-bottom: 5px;
+    // Styles for xl screens and larger
+    width: 14.5vw;
+    height: 13.5vw;
   }
-
-  @media (max-width: theme('screens.md')) {
-    width: 39.5vw;
-    height: 25.2vw;
-    padding-bottom: 5px;
-  }
-
-
 
   @media (min-width: theme('screens.2xl')) {
+    // Styles for 2xl screens and larger
     width: 20px; 
     height: 40px;
     margin: 18px;
-    padding-inline: 1px;
-    padding-bottom: 5px;
   }
 
-  @media (min-width: theme('screens.3xl',)) {
-    width: 36vw; 
-    height: 40dvh;
-
+  @media (min-width: theme('screens.3xl')) {
+    // Styles for 3xl screens and larger
+    width: 14.2vw; 
+    height: 16.2dvh;
+    margin-bottom: 10vh;
   }
 
 
-  // Extra small devices (phones)
-  @media (min-width: 650px) and (max-width: 750px){
-    width: 20px;
-    height: 40px;
+  // Extra small devices (phones) - Specific range
+  @media (width <= 650px) and (max-width: 750px){
+    width: 41.2svw;
+    height: 30svh;
     a .ad {
       width: 10vw;
     } 
     height: 18vh;
+  }
+
+  // Orientation specific styles
+  @media (orientation: portrait) {
+    // Styles for portrait mode
+  }
+
+  @media (orientation: landscape) {
+    // Styles for landscape mode
   }
 }
 

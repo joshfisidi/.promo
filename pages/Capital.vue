@@ -56,6 +56,7 @@ const formatSupply = (value) => {
   padding: 1rem;
   border-radius: 1rem;
   color: white;
+
 }
 .crypto-list {
   list-style: none;

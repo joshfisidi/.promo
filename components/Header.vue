@@ -1,5 +1,6 @@
 <template>
   <div class="flex mb-4 relative">
+    
     <!-- Marquee text area -->
     <div class="bg-slate-900 flex-1 h-7 bg-transparent">
       <div class="marquee font-mono text-1xl text-center">
@@ -12,8 +13,17 @@
         </div>
       </div>
     </div>
+  <!-- NuxtLink for Promo Text -->
+  <NuxtLink to="/" class="promo-text absolute top-1/2 left-4 transform -translate-y-1/2">
+    .promo
+  </NuxtLink>
     <!-- Bell icon for subscribing, which toggles the subscription modal -->
-    <button @click="toggleModal" class="bell-icon absolute top-1/2 right-4 transform -translate-y-1/2" :class="{ 'animate-bell': animateBell }">
+    <button 
+    @mouseenter="startShake"
+    @mouseleave="stopShake"
+    @click="toggleModal" class="bell-icon absolute top-1/2 right-4 transform -translate-y-1/2" 
+    :class="{ 'animate-bell': animateBell, 'shake': isShaking }">
+
       <Icon :icon="bellIcon" class="text-white" />
     </button>
     <!-- Subscription Modal -->
@@ -44,7 +54,7 @@ import { ref, onMounted } from 'vue';
 import { Icon } from '@iconify/vue';
 import bellIcon from '@iconify/icons-mdi/bell';
 
-const contactInfo = ref(''); // Combined contact info for email/phone
+const contactInfo = ref('');
 const texts = ["BitWire", "Temple Renew", "RedPill", "Blirce", "BrainWash", "Tracer"];
 const shuffledTexts = shuffleArray(texts);
 const currentText = ref(shuffledTexts[0]);
@@ -61,6 +71,13 @@ function shuffleArray(array) {
 const isVisible = ref(false);
 const animateBell = ref(false);
 const isModalVisible = ref(false);
+const isShaking = ref(false);
+const startShake = () => {
+  isShaking.value = true;
+}
+const stopShake = () => {
+  isShaking.value = false;
+};
 
 const toggleModal = () => {
   animateBell.value = !animateBell.value;
@@ -70,18 +87,19 @@ const toggleModal = () => {
 const closeModal = () => {
   animateBell.value = false;
   isModalVisible.value = false;
-  contactInfo.value = ''; // Also clear the contact info on close
+  contactInfo.value = '';
 };
 
 const submitSubscription = () => {
-  // Implement your API call to submit the subscription here
-  // For demonstration purposes, we log to the console
   console.log(`Subscribing with contact info: ${contactInfo.value}`);
-  // Reset contact info
   contactInfo.value = '';
-  // Close the modal
   closeModal();
 };
+
+function cycleThroughTexts() {
+  index = (index + 1) % texts.length;
+  currentText.value = shuffledTexts[index];
+}
 
 onMounted(() => {
   setTimeout(() => {
@@ -93,8 +111,13 @@ onMounted(() => {
 </script>
 
 
-<style scoped lang="scss">
 
+
+<style scoped lang="scss">
+.promo-text {
+  @apply text-white font-bold cursor-pointer; // Added cursor-pointer for better UX
+  // Add more styling properties here if needed
+}
 
 
 .modal {
@@ -197,7 +220,6 @@ onMounted(() => {
     background-color: #343548; // A slightly darker blue on hover
   }
 };
-
 .close-button {
   cursor: pointer;
 }
@@ -209,18 +231,25 @@ onMounted(() => {
   transform: translateY(-50%);
   cursor: pointer;
   font-size: 1.1rem;
+  z-index: 4;
 }
 
 .animate-bell {
   animation: bellShake 0.2s ease-in-out;
 }
 
-@keyframes bellShake {
-  0% { transform: translateY(-50%) rotate(0deg); }
-  25% { transform: translateY(-50%) rotate(-10deg); }
-  50% { transform: translateY(-50%) rotate(10deg); }
-  75% { transform: translateY(-50%) rotate(-10deg); }
-  100% { transform: translateY(-50%) rotate(0deg); }
+
+@keyframes shake {
+  0%, 100% { transform: translate(-50%, -50%) rotate(0); }
+  10%, 30%, 50%, 70%, 90% { transform: translate(-50%, -50%) rotate(-10deg); }
+  20%, 40%, 60%, 80% { transform: translate(-50%, -50%) rotate(10deg); }
+}
+
+.shake {
+  animation: shake 0.82s cubic-bezier(.36,.07,.19,.97) both;
+  transform: translate3d(0, 0, 0);
+  backface-visibility: hidden;
+  perspective: 1000px;
 }
 
 @keyframes tracking-in-expand {

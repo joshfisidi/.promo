@@ -1,13 +1,14 @@
 <template>
-  
+
+
   <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-4 gap-4 p-2 m-4">
     <Card class="card flex flex-grid h-30" v-for="card in cards" :key="card.id" :data="card" />
 
 </div>
+
 </template>
 
 <script lang="ts" setup>
-import Card from '/components/CardComponent.vue';
 import { ref } from 'vue';
 import type { CardData } from '@/interfaces/CardData';
 

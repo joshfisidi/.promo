@@ -10,7 +10,7 @@
             <div class="w-1/2 px-2">
               <nuxt-link to="/tools">
                 <button
-                  class="border-b border-slate-700 w-full hover:mt-1 duration-300 bg-gray-900 h-10 rounded-md text-white hover:bg-gray-600 focus:outline-none focus:ring-2 focus:ring-gray-600 active:bg-gray-700"
+                  class="border border-slate-700 w-full hover:mt-1 duration-300 bg-gray-900 h-10 rounded-md text-white hover:bg-gray-600 focus:outline-none focus:ring-2 focus:ring-gray-600 active:bg-gray-700"
                 >
                   Tools
                 </button>
@@ -19,7 +19,7 @@
             <div class="w-1/2 px-0">
               <nuxt-link to="/papers">
                 <button
-                  class="border-b border-slate-700 w-full hover:mt-1 duration-300 bg-gray-900 h-10 rounded-md text-white hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-gray-600 active:bg-gray-700"
+                  class="border border-slate-700 w-full hover:mt-1 duration-300 bg-gray-900 h-10 rounded-md text-white hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-gray-600 active:bg-gray-700"
                 >
                   Papers
                 </button>
@@ -28,7 +28,7 @@
             <div class="w-1/2 px-2">
               <nuxt-link to="/books">
                 <button
-                  class="border-b border-slate-700 w-full hover:mt-1 duration-300 bg-gray-900 h-10 rounded-md text-white hover:bg-gray-600 focus:outline-none focus:ring-2 focus:ring-gray-600 active:bg-gray-700"
+                  class="border border-slate-700 w-full hover:mt-1 duration-300 bg-gray-900 h-10 rounded-md text-white hover:bg-gray-600 focus:outline-none focus:ring-2 focus:ring-gray-600 active:bg-gray-700"
                 >
                   Books
                 </button>

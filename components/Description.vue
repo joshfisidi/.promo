@@ -1,16 +1,20 @@
 <template>
-     <div class="description-card px-8 -pt-3" style="padding-bottom: 6vh;">
-    <h1 class="description fade-text font-extrabold tracking-wide text-sm text-white">Musician/Developer</h1>
-    <p class="mt-1 text-gray-300 text- text-xs">{{ 'Toronto, Canada' }}</p>
+  <div class="description-card mt-2 pt-1 pb-14 bg-gradient-to-r shadow-lg rounded-lg overflow-hidden p-5">
+    <h1 class="fade-text font-bold text-white">Musician/Developer</h1>
+    <p class=" text-gray-200 text-sm">Toronto, Canada</p>
   </div>
-
-
 </template>
 
 <script setup lang="ts">
-
+// TypeScript script block
 </script>
 
-<style scoped setup="scss">
+<style scoped lang="scss">
+.description-card {
+  // Custom SCSS styles if needed
+  .fade-text {
+    @apply opacity-90 hover:opacity-100 transition-opacity duration-300;
+  }
+}
 
 </style>

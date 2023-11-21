@@ -1,7 +1,8 @@
 <template>
-  <div class="top-container flex items-start justify-center px-4">
+  <div class="user-card pt-1 -mb-16 overflow-hidden">
+  <div class="top-container flex items-start justify-center">
     <div
-      class="coin m-8 transition-all duration-500 ease-in-out transform active:scale-90 cursor-pointer" style="padding-bottom: 0px;padding-top: 0px;"
+      class="coin  transition-all duration-500 ease-in-out transform active:scale-90 cursor-pointer" style="padding-bottom: 0px;padding-top: 0px;"
       @click="flipCoin"
       :class="{ heads: isHeads, tails: isTails }"
     >
@@ -13,6 +14,7 @@
         </div>
       </div>
     </div>
+  </div>
   </div>
 </template>
 
@@ -40,7 +42,8 @@ export default {
         }
       }, 100);
     }
-  }
+  },
+  
 };
 </script>
 

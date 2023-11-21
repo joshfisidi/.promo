@@ -1,7 +1,7 @@
 <template>
   <div class="card" @click="toggleExpansion">
     <div class="card-header rounded flex items-center shadow-md">
-      <img src="/icon.png" alt="Icon" class="icon mr-2 rounded">
+      <img src="https://gojilzafapjkmacdfisx.supabase.co/storage/v1/object/public/josh.promo/Code/Myrlin.gif" alt="Icon" class="icon mr-2 rounded">
       <h2 class="card-title px-2">Using these tools</h2>
     </div>
     <div class="card-body" :class="{'hidden': !isExpanded}">

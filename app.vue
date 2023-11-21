@@ -1,10 +1,10 @@
 <template>
   <div class="App bg-slate-900 h-screen text-white">
-    <NuxtLayout>
+    <NuxtLayout >
       <Header />
       <NuxtPage />
-    </NuxtLayout>
-    <Footer /> <!-- Add Tailwind padding class here -->
+    </NuxtLayout> 
+    <Footer />
   </div>
 </template>
 

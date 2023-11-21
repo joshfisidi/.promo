@@ -84,12 +84,14 @@ export default {
   height: 4vh; 
   margin: 9 6px;
 
+
   @media (min-width: theme('screens.sm')) {
     @apply w-16 h-16;
   }
 
   @media (min-width: theme('screens.md')) {
     @apply w-20 h-20;
+    
   }
 
   @media (min-width: theme('screens.lg')) {
