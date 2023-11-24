@@ -1,41 +1,66 @@
 <template>
-  <div class="card" @click="toggleExpansion">
-    <div class="card-header rounded flex items-center shadow-md">
-      <img src="https://gojilzafapjkmacdfisx.supabase.co/storage/v1/object/public/josh.promo/Code/Myrlin.gif" alt="Icon" class="icon mr-2 rounded">
-      <h2 class="card-title px-2">Using these tools</h2>
-    </div>
-    <div class="card-body" :class="{'hidden': !isExpanded}">
-      <!-- Placeholder image -->
-      <img src="https://gojilzafapjkmacdfisx.supabase.co/storage/v1/object/public/josh.promo/Users/joshjgomes-fisidi.gif" alt="Card Image" class="card-image my-4">
-      <p>Here's some more detailed information about the card. This section can contain more descriptive content, such as images, lists, or additional text.</p>
-    </div>
-    <div class="card-footer" :class="{'hidden': !isExpanded}">
-      <button class="action-button">Blirce</button>
-      <button class="action-button">Bitwire</button>
+  <div class="flex flex-col pb">
+    <div v-for="card in cards" :key="card.id" class="card mb-4" @click="toggleExpansion(card)">
+      <div class="card-header rounded flex items-center shadow-md">
+        <img :src="card.iconUrl" alt="Icon" class="icon mr-2 rounded">
+        <h2 class="card-title px-2">{{ card.title }}</h2>
+      </div>
+      <div class="card-body" :class="{'hidden': !card.isExpanded}">
+        <img :src="card.imageUrl" alt="Card Image" class="card-image my-2">
+        <p>{{ card.description }}</p>
+      </div>
+      <div class="card-footer" :class="{'hidden': !card.isExpanded}">
+        <button class="action-button">Blirce</button>
+        <button class="action-button">Bitwire</button>
+      </div>
     </div>
   </div>
 </template>
 
-<script>
-export default {
-  data() {
-    return {
-      isExpanded: false,
-    };
+<script lang="ts">
+import { defineComponent, ref } from 'vue';
+
+interface Card {
+  id: number;
+  title: string;
+  description: string;
+  iconUrl: string;
+  imageUrl: string;
+  isExpanded: boolean;
+}
+
+export default defineComponent({
+  setup() {
+    const cards = ref<Card[]>([
+      { id: 1, title: 'Using these tools', description: 'Glalypso', iconUrl: 'https://gojilzafapjkmacdfisx.supabase.co/storage/v1/object/public/josh.promo/Code/Myrlin.gif', imageUrl: 'https://gojilzafapjkmacdfisx.supabase.co/storage/v1/object/public/josh.promo/Users/joshjgomes-fisidi.gif', isExpanded: false },
+      { id: 1, title: 'Using these tools', description: 'Glalypso', iconUrl: 'https://gojilzafapjkmacdfisx.supabase.co/storage/v1/object/public/josh.promo/Code/Myrlin.gif', imageUrl: 'https://gojilzafapjkmacdfisx.supabase.co/storage/v1/object/public/josh.promo/Users/joshjgomes-fisidi.gif', isExpanded: false },
+      { id: 1, title: 'Using these tools', description: 'Glalypso', iconUrl: 'https://gojilzafapjkmacdfisx.supabase.co/storage/v1/object/public/josh.promo/Code/Myrlin.gif', imageUrl: 'https://gojilzafapjkmacdfisx.supabase.co/storage/v1/object/public/josh.promo/Users/joshjgomes-fisidi.gif', isExpanded: false },
+      { id: 1, title: 'Using these tools', description: 'Glalypso', iconUrl: 'https://gojilzafapjkmacdfisx.supabase.co/storage/v1/object/public/josh.promo/Code/Myrlin.gif', imageUrl: 'https://gojilzafapjkmacdfisx.supabase.co/storage/v1/object/public/josh.promo/Users/joshjgomes-fisidi.gif', isExpanded: false },
+      { id: 1, title: 'Using these tools', description: 'Glalypso', iconUrl: 'https://gojilzafapjkmacdfisx.supabase.co/storage/v1/object/public/josh.promo/Code/Myrlin.gif', imageUrl: 'https://gojilzafapjkmacdfisx.supabase.co/storage/v1/object/public/josh.promo/Users/joshjgomes-fisidi.gif', isExpanded: false },
+      // Add more card objects here
+    ]);
+
+    function toggleExpansion(card: Card) {
+      card.isExpanded = !card.isExpanded;
+    }
+
+    return { cards, toggleExpansion };
   },
-  methods: {
-    toggleExpansion() {
-      this.isExpanded = !this.isExpanded;
-    },
-  },
-};
+});
 </script>
 
 <style lang="scss" scoped>
 .card {
-  @apply max-w-md mx-auto bg-slate-800 text-white rounded-lg overflow-hidden transition-all duration-300 ease-in-out;
+  background-color: #181818;
+  border-radius: 15px;
+  padding: 10px;
+  width: 80vw; // Adjust the width as needed
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   cursor: pointer;
-  @apply sm:max-w-lg md:max-w-xl lg:max-w-2xl;
+  transition: transform 0.2s ease-in-out;
+  overflow: hidden;
+  @apply max-w-md mx-auto bg-slate-800 text-white rounded-lg overflow-hidden transition-all duration-300 ease-in-out;
+  @apply sm:max-w-lg md:max-w-xl p-1 m-11 lg:max-w-2xl;
 
   &-header {
     @apply p-4 flex items-center shadow-md;
@@ -49,10 +74,16 @@ export default {
     }
   }
 
+    .card-container {
+      display: flex;
+      justify-content: center; // Centers horizontally
+      align-items: center; // Centers vertically
+  }
+
   &-body {
     @apply p-4 border-t border-gray-700;
     .card-image {
-      @apply w-full h-auto rounded-lg shadow-sm;
+      @apply w-full h-auto rounded-3xl shadow-sm;
     }
   }
 

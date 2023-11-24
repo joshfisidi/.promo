@@ -1,5 +1,5 @@
 <template>
-  <div class="card-container">
+  <div class="card-container mb-2 pb-12">
     <div class="card" @touchstart="expandCard(cards[0].id)" @touchend="collapseCard(cards[0].id)">
       <div class="card-content">
         <img :src="cards[0].image" alt="Card image" class="card-image"/>
@@ -45,48 +45,38 @@ function collapseCard(cardId) {
     background-color: #181818;
     border-radius: 15px;
     padding: 10px;
-    width: 80vw; // Take up entire screen width
-    height: 50vh; // Adjust the height as needed
+    width: 80vw;
+    height: 60vh; // Adjusted height
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     cursor: pointer;
     transition: transform 0.2s ease-in-out;
-    overflow: hidden; // This prevents child content from overflowing
+    overflow: hidden;
+
     &:hover {
       transform: scale(1.05);
     }
-    .card-content {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      text-align: center;
-      height: 100%;
-      background-color: rgb(37, 37, 37); // Adjusted background color
-      border-radius: 10px; // Adjusted to apply rounded corners if needed
-      font-size: 16px;
-      padding-top: 10px;
-      border-top: 1px solid #ccc;
-      // Repeated styles can be removed in SCSS by not re-declaring them
-    }
-    .card-image {
-      width: 100%; // Make image take up the full width of the card
-      height: auto; // Keep the aspect ratio of the image
-      border-radius: 10px; // Optional: if you want rounded corners on the image
-      margin-bottom: 10px; // Space between image and text content
-    }
-    h2 {
-      color: #fff;
-      font-size: 24px;
-      margin-bottom: 10px;
-      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
-    }
+
+    // ... other styles for .card-content, .card-image, h2
   }
 }
 
-// Media query for mobile devices
-@media (max-width: 768px) {
+// Media query for larger displays (e.g., iMacs)
+@media (min-width: 1368px) {
   .card-container .card {
-    padding: 20px; // increased padding more mobile
+    padding: 20px;
+    height: 70vh; // Adjusted height for larger displays
+  }
+}
+
+// Media query for specific screen sizes (e.g., landscape tablets)
+@media only screen 
+and (min-device-width: 512px) 
+and (max-device-width: 683px) 
+and (-webkit-min-device-pixel-ratio: 2)
+and (orientation: landscape) {
+  .card-container .card {
+    padding: 20px;
+    height: 50vh; // Adjusted height for specific screen sizes
   }
 }
 </style>

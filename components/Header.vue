@@ -14,7 +14,7 @@
       </div>
     </div>
   <!-- NuxtLink for Promo Text -->
-  <NuxtLink to="/" class="promo-text absolute top-1/2 left-4 transform -translate-y-1/2">
+  <NuxtLink to="/" class="promo-text absolute top-1/2 left-6 transform -translate-y-1/2">
     .promo
   </NuxtLink>
     <!-- Bell icon for subscribing, which toggles the subscription modal -->
@@ -232,6 +232,9 @@ onMounted(() => {
   cursor: pointer;
   font-size: 1.1rem;
   z-index: 4;
+  animation: bellShake 0.2s ease-in-out;
+  // Ensuring that the animation does not affect the position
+  animation-fill-mode: forwards;
 }
 
 .animate-bell {
@@ -240,14 +243,13 @@ onMounted(() => {
 
 
 @keyframes shake {
-  0%, 100% { transform: translate(-50%, -50%) rotate(0); }
-  10%, 30%, 50%, 70%, 90% { transform: translate(-50%, -50%) rotate(-10deg); }
-  20%, 40%, 60%, 80% { transform: translate(-50%, -50%) rotate(10deg); }
+  0%, 100% { transform: translateY(-50%) rotate(0); }
+  10%, 30%, 50%, 70%, 90% { transform: translateY(-50%) rotate(-10deg); }
+  20%, 40%, 60%, 80% { transform: translateY(-50%) rotate(10deg); }
 }
 
 .shake {
   animation: shake 0.82s cubic-bezier(.36,.07,.19,.97) both;
-  transform: translate3d(0, 0, 0);
   backface-visibility: hidden;
   perspective: 1000px;
 }
@@ -289,8 +291,3 @@ onMounted(() => {
 }
 </style>
 
-
-
-iPhone 14 Pro Max
-430 x 932
-3
