@@ -135,6 +135,7 @@ const imageLinks = [
 .expanded {
   height: auto;
   padding: 1rem;
+  animation-name: ease-in-out;
 }
 
 .CollapsibleButton:hover {

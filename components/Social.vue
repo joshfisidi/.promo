@@ -4,7 +4,7 @@
       <template v-for="item in items" :key="item.index">
         <a
           :href="item.href"
-          class="w-12 h-12 sm:w-16 sm:h-16 md:w-20 md:h-20 lg:w-12 lg:h-12 xl:w-8 xl:h-8 flex items-center justify-center mx-6 active:scale-90 hover:scale-105 transition duration-300 ease-in-out cursor-pointer"
+          class="social-buttons w-12 h-12 sm:w-16 sm:h-16 md:w-20 md:h-20 lg:w-12 lg:h-12 xl:w-8 xl:h-8 2xl:w-14, gap-x flex items-center justify-center mx-6 active:scale-90 hover:scale-105 transition duration-300 ease-in-out cursor-pointer"
           :class="{
             'bg-black': !isActive || (isActive && activeIndex === item.index),
             'bg-gray-500': isActive && activeIndex !== item.index,
@@ -84,6 +84,8 @@ export default {
   height: 4vh; 
   margin: 9 6px;
 
+  
+
 
   @media (min-width: theme('screens.sm')) {
     @apply w-16 h-16;
@@ -111,16 +113,50 @@ export default {
 
 }
 
+.social-buttons {
+  
+  @media (min-width: theme('screens.2xl')) {
+    height: 7vh;
+    width: 6vw;
+   @apply p-1 px-1 pt-3 pb-3; // Custom styles for 2xl screens go here
+
+  }
+}
+
 .circle-mask {
   @apply w-full h-full flex items-center justify-center transition-transform duration-200 ease-in-out;
+  @media (min-width: theme('screens.2xl')) {
+    height: 7vh;
+    width: 6vw;
+   @apply  p-1 px-1 pt-3 pb-3; // Custom styles for 2xl screens go here
+
+  }
+
 }
 
 .circle:active .circle-mask {
   @apply scale-90;
+
+  .circle-mask {
+    @apply w-full h-full flex items-center justify-center transition-transform duration-200 ease-in-out;
+    @media (min-width: theme('screens.2xl')) {
+      height: 7vh;
+      width: 6vw;
+     @apply  p-1 px-1 pt-3 pb-3; // Custom styles for 2xl screens go here
+  
+    }
+}
 }
 
 .circle-image {
   @apply w-full h-full object-cover rounded-full;
+  @media (min-width: theme('screens.2xl')) {
+
+    height: 10.5vh;
+    width: 10.5vw;
+    padding-block: 20px;
+    padding-inline: 20px;
+}
 }
 </style>
 

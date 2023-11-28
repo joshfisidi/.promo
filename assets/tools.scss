@@ -1,0 +1,27 @@
+:root {
+    --slide-text-color: #fff;
+    --color-1: rgb(206, 17, 17);
+    --color-2: rgb(0, 140, 255);
+    /* Define more colors as needed */
+  }
+  
+  body {
+    background: #fff;
+    font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+    font-size: 14px;
+    color: #000;
+    margin: 0;
+    padding: 0;
+  }
+  
+  html, body {
+    position: relative;
+    height: 100%;
+  }
+  
+  #app {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  

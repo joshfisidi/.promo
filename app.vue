@@ -1,9 +1,12 @@
 <template>
-  <div class="App bg-slate-900 h-screen text-white">
+  <div class="App bg-slate-900 h-screen text-white  cursor-pointer">
     <NuxtLayout >
       <Header />
+      
       <NuxtPage />
+      
     </NuxtLayout> 
+    
     <Footer />
   </div>
 </template>
@@ -26,5 +29,6 @@ useHead({
 
 body {
   font-family: 'Roboto', sans-serif;
+  
 }
 </style>

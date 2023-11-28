@@ -1,53 +1,95 @@
 <template>
-
-  <div class="flex justify-center" style="margin-bottom: 0px;border-bottom-width: 0px;padding-top: 0px;padding-bottom: 5px;">
-    <!-- Ad Video -->
-    <a href="https://replacethis.com" target="_blank" class="link-wrapper">
-      <div
-        class="ad bg-slate-900 rounded-lg px-4 py-3 mx-2 my-1 p-8 justify-items-center text-white font-bold text-xs transition-all duration-200 ease-in-out transform cursor-pointer button-mask"
-        @touchstart="isActiveAd = true"
-        @touchend="isActiveAd = false"
-        :class="{ 'scale-90': isActiveAd }"
-      >
-        <div class="iframe-container">
-          <iframe
-            class="w-full h-full p3 rounded"
-            src="https://www.youtube.com/embed/YAmt4qNq3X4"
-            frameborder="0"
-            allowfullscreen
-          ></iframe>
+  <div class="scroll-container">
+    <div class="flex justify-start overflow-x-auto">
+      <a v-for="card in cards" :key="card.id" :href="card.link" target="_blank" class="link-wrapper">
+        <div
+          class="ad bg-slate-900 rounded-lg px-4 py-3 -pb-8 mx-2 my-1 p-8 justify-items-center text-white font-bold text-xs transition-all duration-200 ease-in-out transform cursor-pointer button-mask"
+          @touchstart="() => card.isActive = true"
+          @touchend="() => card.isActive = false"
+          :class="{ 'scale-90': card.isActive }"
+        >
+          <div class="iframe-container">
+            <iframe
+              class="w-full h-full p3 rounded"
+              :src="card.iframeSrc"
+              frameborder="0"
+              allowfullscreen
+            ></iframe>
+          </div>
         </div>
-      </div>
-    </a>
-
-    <!-- Twitter Video -->
-    <a href="https://twitter.com" target="_blank" class="link-wrapper">
-      <div
-        class="ad bg-slate-900 rounded-lg px-4 py-3 mx-2 my-1 text-white transition-all duration-200 ease-in-out transform cursor-pointer button-mask"
-        @touchstart="isActiveTwitter = true"
-        @touchend="isActiveTwitter = false"
-        :class="{ 'scale-90': isActiveTwitter }"
-      >
-        <div class="iframe-container">
-          <iframe
-            class="w-full h-full"
-            src="https://www.youtube.com/embed/WkXJpoC1Me0"
-            frameborder="0"
-            allowfullscreen
-          ></iframe>
-        </div>
-      </div>
-    </a>
+      </a>
+    </div>
   </div>
 </template>
 
+
 <script setup lang="ts">
 import { ref } from "vue";
-const isActiveAd = ref(false);
-const isActiveTwitter = ref(false);
-</script>
 
+interface Card {
+  id: number;
+  link: string;
+  iframeSrc: string;
+  isActive: boolean;
+}
+
+const cards = ref<Card[]>([
+  {
+    id: 1,
+    link: 'https://replacethis.com',
+    iframeSrc: 'https://www.youtube.com/embed/YAmt4qNq3X4',
+    isActive: false
+  },
+  {
+    id: 2,
+    link: 'https://twitter.com',
+    iframeSrc: 'https://www.youtube.com/embed/WkXJpoC1Me0',
+    isActive: false
+  },
+  {
+    id: 2,
+    link: 'https://twitter.com',
+    iframeSrc: 'https://www.youtube.com/embed/WkXJpoC1Me0',
+    isActive: false
+  },
+  {
+    id: 2,
+    link: 'https://twitter.com',
+    iframeSrc: 'https://www.youtube.com/embed/WkXJpoC1Me0',
+    isActive: false
+  },
+  {
+    id: 2,
+    link: 'https://twitter.com',
+    iframeSrc: 'https://www.youtube.com/embed/WkXJpoC1Me0',
+    isActive: false
+  },
+  {
+    id: 2,
+    link: 'https://twitter.com',
+    iframeSrc: 'https://www.youtube.com/embed/WkXJpoC1Me0',
+    isActive: false
+  },
+  {
+    id: 2,
+    link: 'https://twitter.com',
+    iframeSrc: 'https://www.youtube.com/embed/WkXJpoC1Me0',
+    isActive: false
+  },
+  // Add more cards as needed
+]);
+</script>
 <style scoped lang="scss">
+
+.scroll-container {
+  @apply w-full;
+  margin-bottom: 0;
+  border-bottom-width: 0;
+  padding-top: 0;
+  padding-bottom: 5px;
+}
+
+
 .ad {
   @apply hover:scale-105;
   width: 44vw; // Default width for mobile
@@ -78,7 +120,7 @@ const isActiveTwitter = ref(false);
     // Styles for 2xl screens and larger
     width: 20px; 
     height: 40px;
-    margin: 18px;
+    margin: 16.2px;
   }
 
   @media (min-width: theme('screens.3xl')) {

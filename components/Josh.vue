@@ -1,72 +1,140 @@
 <template>
   <div class="user-card pt-1 -mb-16 overflow-hidden">
-    <div class="top-container flex items-start justify-center">
+    <div class="top-container flex items-start justify-center relative">
+      
       <div
         class="coin transition-all duration-500 ease-in-out transform active:scale-90 cursor-pointer"
         @click="flipCoinAndAddPoint"
         :class="{ heads: isHeads, tails: isTails }"
       >
-        <div class="flex flex-col items-center text-center">
-          <div class="md:flex-shrink-0">
-            <img class="object-cover rounded-full" :src="image" :alt="title" />
-            <span v-if="showPoint" class="point-animation">+1</span>
-          </div>
+        <img class="object-cover rounded-full" :src="image" :alt="title" />
+      </div>
+      <span v-for="(point, index) in points" :key="point.id" class="points" 
+      :style="{ top: point.position + 'px', fontSize: point.size + 'rem', opacity: point.opacity }">+1</span>
+
+      <!-- Display posts or skeleton loaders -->
+      <div v-for="post in posts" :key="post.id" class="post-card">
+        <div v-if="isLoading" class="skeleton-loader"></div>
+        <div v-else>
+          <h3>{{ post.title }}</h3>
+          <p>{{ post.body }}</p>
         </div>
       </div>
+
     </div>
   </div>
 </template>
 
-<script>
-export default {
-  data() {
-    return {
-      isHeads: false,
-      isTails: false,
-      showPoint: false,
-      image: 'https://gojilzafapjkmacdfisx.supabase.co/storage/v1/object/public/josh.promo/Users/joshjgomes-fisidi.gif',
-    };
-  },
-  methods: {
-    flipCoinAndAddPoint() {
-      this.flipCoin();
-      this.addPoint();
-    },
-    flipCoin() {
-      this.isHeads = false;
-      this.isTails = false;
+<script setup>
+import { ref } from 'vue';
 
-      const flipResult = Math.random();
-      setTimeout(() => {
-        if (flipResult <= 0.5) {
-          this.isHeads = true;
-        } else {
-          this.isTails = true;
-        }
-      }, 100);
-    },
-    addPoint() {
-      this.showPoint = true;
-      setTimeout(() => {
-        this.showPoint = false;
-      }, 1000); // Duration of the point animation
+
+const isHeads = ref(false);
+const isTails = ref(false);
+const image = ref('https://gojilzafapjkmacdfisx.supabase.co/storage/v1/object/public/josh.promo/Users/joshjgomes-fisidi.gif');
+const points = ref([]);
+
+const flipCoinAndAddPoint = () => {
+  flipCoin();
+  addPoint();
+};
+
+const flipCoin = () => {
+  isHeads.value = false;
+  isTails.value = false;
+
+  const flipResult = Math.random();
+  setTimeout(() => {
+    if (flipResult <= 0.5) {
+      isHeads.value = true;
+    } else {
+      isTails.value = true;
     }
-  },
+  }, 100);
+};
+
+const addPoint = () => {
+  const newPoint = {
+    id: Date.now(),
+    position: -20,
+    size: Math.random() * 1.5 + 0.5,
+    opacity: Math.random() * 0.5 + 0.5
+  };
+  points.value.push(newPoint);
+
+  const movePointUpward = setInterval(() => {
+    newPoint.position -= 1;
+  }, 10);
+
+  setTimeout(() => {
+    clearInterval(movePointUpward);
+    points.value = points.value.filter(point => point.id !== newPoint.id);
+  }, 1000);
+};
+
+// Prevent downloading or saving the image
+onMounted(() => {
+  const imageElement = document.querySelector('.coin img');
+  if (imageElement) {
+    imageElement.addEventListener('contextmenu', preventDownload);
+    imageElement.addEventListener('touchstart', handleTouchStart, { passive: false });
+    imageElement.addEventListener('touchend', handleTouchEnd, { passive: false });
+  }
+});
+
+const preventDownload = (event) => {
+  event.preventDefault();
+};
+
+let touchStartTime = 0;
+const handleTouchStart = (event) => {
+  touchStartTime = new Date().getTime();
+};
+
+const handleTouchEnd = (event) => {
+  const touchEndTime = new Date().getTime();
+  if (touchEndTime - touchStartTime > 500) {
+    event.preventDefault();
+  }
 };
 </script>
 
 
 <style scoped lang="scss">
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
 
-.point-animation {
+  
+  .user-card {
+    @apply overflow-visible z-50;
+    padding-bottom: 2rem; // Adjust padding to ensure there's space for the animation
+  
+    // Tailwind's 2xl breakpoint
+    @media (min-width: theme('screens.2xl')) {
+      height: 25vh;
+     @apply p-1 px-1; // Custom styles for 2xl screens go here
+ 
+    }
+  }
+
+.points {
   position: absolute;
-  top: -1px;
-  right: 0;
-  animation: pointMoveUp 1s ease-out forwards;
+  left: 50%;
+  transform: translateX(-50%);
+  animation: fadeOut 1s ease-out forwards;
   color: rgb(253, 253, 252);
   font-weight: bold;
-  font-size: 1.5rem; // Adjusted for visibility
   z-index: 1000;
+}
+
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
 }
 
 @keyframes pointMoveUp {
@@ -76,7 +144,7 @@ export default {
   }
   100% {
     opacity: 0;
-    transform: translateY(-30px);
+    transform: translateY(-80px);
   }
 }
 
@@ -91,13 +159,12 @@ export default {
 }
 
 .top-container {
-  min-height: 22vh;  // Full viewport height
-  padding-top: 3px;  // Adjust the top padding as needed
-  padding-bottom: 3vh;
-  @media (max-width: 640px) { // Example breakpoint for mobile devices
-    padding-top: 10px;
-  }
-  }
+  
+  
+  position: relative; // Ensuring relative positioning for absolute children
+  min-height: 10rem; // Ensure enough space for the spinning coin and the animation
+  
+}
 
   .coin {
     // Increase the width and height to make the spinner larger
@@ -106,6 +173,12 @@ export default {
     min-height: 15vh; // Adjusted minimum height
     padding-top: 2vh;
     padding-bottom: 13vh;
+
+    @media (min-width: theme('screens.2xl')) {
+      height: 15vh;
+      width: 15vw;
+     @apply p-1 px-16 pb-1; // Custom styles for 2xl screens go here
+    }
   
     &.heads, &.tails {
       transform-style: preserve-3d;

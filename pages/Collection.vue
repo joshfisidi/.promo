@@ -1,5 +1,7 @@
 <template>
     <div class="grid-container">
+      <h1 class="h1 text-custom-red">Coin Collection</h1>
+
       <CircleCard v-for="item in circleItems" :key="item.id">
         {{ item.content }}
       </CircleCard>
@@ -12,21 +14,10 @@
   import type { CircleItem } from '~/interfaces/CircleItem'; // Adjust the import path as needed
   
   const circleItems = ref<CircleItem[]>([
-    { id: 1, content: 'Item 1' },
-    { id: 2, content: 'Item 2' },
-    { id: 3, content: 'Item 3' },
-    { id: 1, content: 'Item 1' },
-    { id: 2, content: 'Item 2' },
-    { id: 3, content: 'Item 3' },
-    { id: 1, content: 'Item 1' },
-    { id: 2, content: 'Item 2' },
-    { id: 3, content: 'Item 3' },
-    { id: 1, content: 'Item 1' },
-    { id: 2, content: 'Item 2' },
-    { id: 3, content: 'Item 3' },
-    { id: 1, content: 'Item 1' },
-    { id: 2, content: 'Item 2' },
-    { id: 3, content: 'Item 3' },
+    { id: 1, content: 'Eth' },
+    { id: 2, content: 'ADA' },
+    { id: 3, content: 'Coin' },
+    
     // Add more items as needed
   ]);
   </script>

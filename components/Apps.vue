@@ -1,16 +1,11 @@
 <template>
-  <div class="card-style-container flex justify-center -m-4">
-    <!-- Card 1 -->
-    <div class="card-style flex-shrink rounded py-1 bg-red-500 text-white hidden lg:flex">
-      Branding
-    </div>
 
     <!-- Nuxt Link (Existing Element) -->
     <nuxt-link
       @touchstart="isActive = true"
       @touchend="isActive = false"
       :class="{ 'scale-90': isActive }"
-      class="Apps flex z-10 justify-center text-center flex-col bg-slate-900 rounded px-4 py-2 mx-7 lg:mx-20 my-4 text-white font-bold mby-2 transition-all duration-200 ease-in-out transform active:scale-90 hover:scale-105 cursor-pointer"
+      class="Apps flex z-10 justify-center text-center flex-grid bg-slate-900 rounded px-4 py-2 mx-7 lg:mx-20 my-4 text-white font-bold mby-2 transition-all duration-200 ease-in-out transform active:scale-90 hover:scale-105 cursor-pointer"
       style="
         -webkit-touch-callout: none;
         -webkit-user-select: none;
@@ -23,12 +18,7 @@
     >
       Apps
     </nuxt-link>
-
-    <!-- Card 2 -->
-    <div class="card-style lg:flex hidden">
-      slideshow photos
-    </div>
-  </div>
+  
 </template>
 
 <script>
@@ -45,6 +35,13 @@ export default {
 </script>
 
 <style scoped lang="scss">
+
+.card-style {
+
+  @media (min-width: theme('screens.2xl')) {
+    height: 27vh;
+}
+}
 .scale-90 {
   transform: scale(0.9);
 }
@@ -62,7 +59,7 @@ export default {
   padding: 0.5rem;
   margin-top: 1rem;
   margin-bottom: 1rem;
-  background-color: red; /* Choose a background color */
+   /* Choose a background color */
   color: white; /* Choose a text color */
   @apply hidden lg:flex;
    /* Hide by default, show on lg and larger screens */
@@ -75,8 +72,8 @@ export default {
   }
 }
 
-@media (width >= 724px) {
-  .card-style {
+@media (min-width: 1280px) {
+  .Apps {
     width: 50%; /* Adjust this percentage to control the width */
     max-width: 30vw; /* Optional: You can set a max-width if needed */
     margin: auto; /* Centers the element horizontally */
@@ -89,5 +86,6 @@ export default {
     margin-top: 1rem;
     margin-bottom: 1rem;
   }
+  
 }
 </style>

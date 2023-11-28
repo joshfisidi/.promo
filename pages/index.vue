@@ -3,16 +3,19 @@
   <Josh />
   <Description />
   <Social />
+ <CardContainer />
   <Backstory />
   <Music />
   <Apps />
   <Capital />
   <Code />
   <Ad />
+  <Founder/>
 
 </template>
 
 <script setup>
+
 useHead("...");
 
 useSeoMeta({
