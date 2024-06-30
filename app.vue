@@ -7,7 +7,6 @@
       
     </NuxtLayout> 
     
-    <Footer />
   </div>
 </template>
 

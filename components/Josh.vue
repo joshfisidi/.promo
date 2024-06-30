@@ -31,7 +31,7 @@ import { ref } from 'vue';
 
 const isHeads = ref(false);
 const isTails = ref(false);
-const image = ref('https://gojilzafapjkmacdfisx.supabase.co/storage/v1/object/public/josh.promo/Users/joshjgomes-fisidi.gif');
+const image = ref('https://gojilzafapjkmacdfisx.supabase.co/storage/v1/object/public/josh.promo/Users/yashgumaeternal-2.png');
 const points = ref([]);
 
 const flipCoinAndAddPoint = () => {
@@ -166,18 +166,25 @@ const handleTouchEnd = (event) => {
   
 }
 
+
+
   .coin {
     // Increase the width and height to make the spinner larger
     width: 33vw; // Adjusted width
     height: 26.5vh; // Adjusted height
     min-height: 15vh; // Adjusted minimum height
-    padding-top: 2vh;
+    padding-top: 0rem;
     padding-bottom: 13vh;
 
-    @media (min-width: theme('screens.2xl')) {
+    @media (min-width: theme('screens.xl')) {
       height: 15vh;
       width: 15vw;
-     @apply p-1 px-16 pb-1; // Custom styles for 2xl screens go here
+      padding-bottom: 10rem;
+    }
+    @media (min-width: theme('screens.lg')) {
+      height: 10vh;
+      width: 19vw;
+      padding-bottom: 14rem;
     }
   
     &.heads, &.tails {

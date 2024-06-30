@@ -1,4 +1,5 @@
 export default defineNuxtConfig({
+  devtools: { enabled: true },
   // Alias configurations
   alias: {
     assets: "/assets",
@@ -19,6 +20,8 @@ export default defineNuxtConfig({
         // Viewport options can be added here
       }
     ],
+    '@nuxt/image',
+    '@nuxtjs/device',
   ],
 
   // Google Fonts (assuming you are using @nuxtjs/google-fonts)
@@ -46,8 +49,15 @@ export default defineNuxtConfig({
 
   // Environment Variables Configuration
   runtimeConfig: {
+    public: {
+      magicPublishableKey: process.env.MAGIC_PUBLISHABLE_KEY,
+    },
     supabaseUrl: process.env.SUPABASE_URL,
     supabaseKey: process.env.SUPABASE_KEY,
     // Add any other environment variables you need
   },
+  hooks: {
+    'ready': () => {
+      console.log('Magic Publishable Key:', process.env.MAGIC_PUBLISHABLE_KEY);
+    }}
 });

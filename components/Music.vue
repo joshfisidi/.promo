@@ -1,7 +1,7 @@
 <template>
   <div
     ref="buttonContainer"
-    @click="handleClick"
+    @click="handleClick"  
     @touchstart="handleTouchStart"
     @touchend="handleTouchEnd"
     :class="[
@@ -29,6 +29,7 @@
       'cursor-pointer'
     ]"
   >
+
   <span v-if="!isActive"> Music </span>
   <div v-else class="button-container">
     <a
@@ -49,7 +50,10 @@
 import { ref, onMounted, onUnmounted } from 'vue';
 
 const isActive = ref(false);
-const buttonContainer = ref(null);
+
+// Explicitly type buttonContainer as HTMLElement or null.
+const buttonContainer = ref<HTMLElement | null>(null);
+
 let touchStartX = 0;
 
 const toggleExpand = () => {
@@ -57,6 +61,7 @@ const toggleExpand = () => {
 };
 
 const handleClick = (event: MouseEvent) => {
+  // Add a check for buttonContainer.value to ensure it's not null.
   if (buttonContainer.value && buttonContainer.value.contains(event.target as Node)) {
     if (!(event.target as HTMLElement).classList.contains('button-image')) {
       toggleExpand();
@@ -78,6 +83,7 @@ const handleTouchEnd = (event: TouchEvent) => {
 };
 
 const handleDocumentClick = (event: MouseEvent) => {
+  // Add a check for buttonContainer.value to ensure it's not null.
   if (isActive.value && buttonContainer.value && !buttonContainer.value.contains(event.target as Node)) {
     isActive.value = false;
   }

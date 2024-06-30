@@ -1,6 +1,5 @@
 <template>
   <div class="flex mb-4 relative">
-    
     <!-- Marquee text area -->
     <div class="bg-slate-900 flex-1 h-7 bg-transparent">
       <div class="marquee font-mono text-1xl text-center">
@@ -13,29 +12,27 @@
         </div>
       </div>
     </div>
-  <!-- NuxtLink for Promo Text -->
-  <NuxtLink to="/" class="promo-text absolute top-1/2 left-6 transform -translate-y-1/2">
-    .promo
-  </NuxtLink>
+    <!-- NuxtLink for Promo Text -->
+    <NuxtLink to="/" class="promo-text absolute top-1/2 left-6 transform -translate-y-1/2">
+      .promo
+    </NuxtLink>
     <!-- Bell icon for subscribing, which toggles the subscription modal -->
     <button 
-    @mouseenter="startShake"
-    @mouseleave="stopShake"
-    @click="toggleModal" class="bell-icon absolute top-1/2 right-4 transform -translate-y-1/2" 
-    :class="{ 'animate-bell': animateBell, 'shake': isShaking }">
-
+      @mouseenter="startShake"
+      @mouseleave="stopShake"
+      @click="toggleModal" class="bell-icon absolute top-1/2 right-4 transform -translate-y-1/2" 
+      :class="{ 'animate-bell': animateBell, 'shake': isShaking }">
       <Icon :icon="bellIcon" class="text-white" />
     </button>
     <!-- Subscription Modal -->
     <div v-if="isModalVisible" class="modal">
-      
       <div class="modal-background" @click="closeModal"></div>
       <div class="modal-content">
         <header class="modal-header">
           <p class="modal-title">Subscribe for updates</p>
           <button class="hover:bg-slate-800 p-0 px-1 hover:rounded-full hover:text-white text-black text-sm font-bold" @click="closeModal">X</button>
         </header>
-        <section class="modal-body ">
+        <section class="modal-body">
           <form @submit.prevent="submitSubscription">
             <input type="text" v-model="contactInfo" placeholder="Enter your email or phone" class="input-field" required>
             <button type="submit" class="submit-button">Subscribe</button>
@@ -74,7 +71,7 @@ const isModalVisible = ref(false);
 const isShaking = ref(false);
 const startShake = () => {
   isShaking.value = true;
-}
+};
 const stopShake = () => {
   isShaking.value = false;
 };
@@ -110,15 +107,11 @@ onMounted(() => {
 });
 </script>
 
-
-
-
 <style scoped lang="scss">
 .promo-text {
   @apply text-white font-bold cursor-pointer; // Added cursor-pointer for better UX
   // Add more styling properties here if needed
 }
-
 
 .modal {
   position: fixed;
@@ -179,7 +172,6 @@ onMounted(() => {
   justify-content: flex-end;
 }
 
-
 .input-field {
   width: 100%; // Full width to fit the modal
   padding: 10px 15px; // Padding for comfortable text entry
@@ -219,7 +211,7 @@ onMounted(() => {
   &:hover {
     background-color: #343548; // A slightly darker blue on hover
   }
-};
+}
 .close-button {
   cursor: pointer;
 }
@@ -240,7 +232,6 @@ onMounted(() => {
 .animate-bell {
   animation: bellShake 0.2s ease-in-out;
 }
-
 
 @keyframes shake {
   0%, 100% { transform: translateY(-50%) rotate(0); }
@@ -274,20 +265,9 @@ onMounted(() => {
 
 .animated-text {
   display: inline-block;
-  animation: fadeInUp 1.5s ease-in-out infinite alternate;
+  animation:fadeInUP 1.5s ease-in-out out infinite alternate;
   color: white;
   font-weight: bold;
 }
 
-@keyframes fadeInUp {
-  0% {
-    transform: translateY(0.5rem);
-    opacity: 0;
-  }
-  100% {
-    transform: translateY(0);
-    opacity: 1;
-  }
-}
 </style>
-

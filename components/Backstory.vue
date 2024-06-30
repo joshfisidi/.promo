@@ -35,9 +35,9 @@ const isActive = ref(false);
 }
 
 .bg-gradient-animation {
-  background: linear-gradient(0deg, #ff01bf, #00ffbf);
+  background: linear-gradient(0deg, #7d0808, #000000);
   background-size: 100% 200%;
-  animation: gradient-animation 3s linear infinite alternate-reverse;
+  animation: gradient-animation 6s linear infinite alternate-reverse;
 }
 
 .scale-90 {

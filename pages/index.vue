@@ -9,9 +9,8 @@
   <Apps />
   <Capital />
   <Code />
-  <Ad />
-  <Founder/>
-
+  <Ad /> 
+ <LoginModal />
 </template>
 
 <script setup>

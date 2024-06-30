@@ -42,14 +42,9 @@ export default {
   /* Other styles remain the same */
 }
 
-.matrix-background.is-visible {
-  display: block;
-}
 
 @media (min-width: 768px) {
-  .matrix-background.is-visible {
-    display: block;
-  }
+
 }
 
 .matrix-background {

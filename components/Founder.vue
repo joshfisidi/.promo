@@ -11,32 +11,30 @@
   </script>
   
   <style scoped lang="scss">
-  @import 'tailwindcss/utilities';
-  
-  .Founder-Footer .founder {
-    @apply w-full text-center py-2 bg-black;
-    font-size: 0.875rem; // 14px
-  
-    @media (min-width: theme('screens.sm')) {
-      font-size: 1rem; // 16px for sm screens and larger
-    }
-  
-    @media (min-width: theme('screens.md')) {
-      font-size: 1.125rem; // 18px for md screens and larger
-    }
-  
-    @media (min-width: theme('screens.lg')) {
-      font-size: 1.25rem; // 20px for lg screens and larger
-    }
-    @media (min-width: theme('screens.xl')) {
-        font-size: 2.25rem;
-        flex: hidden; // 20px for lg screens and larger
-      }
-      @media (min-width: theme('screens.2xl')) {
-       flex: hidden; // 20px for lg screens and larger
-      }
-  
-    // Additional responsive font sizes can be added here if necessary
+@import 'tailwindcss/utilities';
+
+.Founder-Footer .founder {
+  @apply w-full text-center py-2 bg-black;
+  font-size: 0.875rem; // 14px
+
+  @media (min-width: 640px) { /* sm */
+    font-size: 1rem; // 16px
   }
-  </style>
-  
+
+  @media (min-width: 768px) { /* md */
+    font-size: 1.125rem; // 18px
+  }
+
+  @media (min-width: 1024px) { /* lg */
+    font-size: 1.25rem; // 20px
+  }
+
+  @media (min-width: 1280px) { /* xl */
+    font-size: 2.25rem;
+  }
+
+  @media (min-width: 1536px) { /* 2xl */
+    // No specific style needed for 2xl in your code snippet
+  }
+}
+</style>

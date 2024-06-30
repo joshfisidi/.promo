@@ -1,5 +1,10 @@
 <template>
+  <div>
+       
 
+        <ChartCard />
+   
+    </div>
     <div class="card-container">
       <a
         v-for="(image, index) in cardImages"
@@ -12,13 +17,13 @@
         <p class="card-title">{{ cardTitles[index] }}</p>
       </a>
     </div>
- 
+    <div id="tsparticles"></div>
 </template>
 
 <script setup>
 import { ref, onMounted, onUnmounted, computed } from 'vue';
 
-
+const userName = ref("Swipe Down");
 
 const cardImages = [
   "https://gojilzafapjkmacdfisx.supabase.co/storage/v1/object/public/josh.promo/Code/Myrlin.gif",
@@ -60,6 +65,22 @@ const cardTitles = [
 
 const userDisplayName = computed(() => userName.value || "Git Activity");
 
+onMounted(() => {
+  axios.get("https://api.github.com/users/joshjgomes")
+    .then(response => {
+      userName.value = response.data.name;
+    })
+    .catch(error => {
+      console.error("Error fetching GitHub user data:", error);
+      // Here you could set a default value or handle the UI state
+    });
+
+  if (!window.pJSDom?.length) {
+    particlesJS('tsparticles', {
+      // Your particles.js configuration here
+    });
+  }
+});
 
 onUnmounted(() => {
   if (window.pJSDom?.length) {

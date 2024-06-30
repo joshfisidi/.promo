@@ -17,14 +17,15 @@
     >
       <SwiperSlide v-for="(card, index) in cards" :key="index">
         <div class="card bg-slate-900 rounded-lg">
-          <h3 class="text-white text-lg">{{ card.title }}</h3>
-          <p class="text-gray-300">{{ card.description }}</p>
+          <img :src="card.image" alt="Card Image" class="card-image" />
         </div>
+        <h3 class="card-title text-white text-lg">{{ card.title }}</h3>
       </SwiperSlide>
       <div class="swiper-pagination"></div>
     </Swiper>
   </div>
 </template>
+
 
 <script setup lang="ts">
 import { ref } from 'vue';
@@ -36,10 +37,10 @@ import 'swiper/css/effect-coverflow';
 import { Navigation, Pagination, EffectCoverflow } from 'swiper/modules';
 
 const cards = ref([
-  { title: 'Card 1', description: 'Description for card 1' },
-  { title: 'Card 2', description: 'Description for card 2' },
-  { title: 'Card 3', description: 'Description for card 3' },
-  { title: 'Card 4', description: 'Description for card 4' },
+  { title: 'Hold Up', description: 'Description for card 1', image: 'joshjgomes2023.jpg' },
+  { title: 'Kingdom Come', description: 'Description for card 2', image: 'url-to-image-2.jpg' },
+  { title: 'Gone', description: 'Description for card 3', image: 'url-to-image-3.jpg' },
+  { title: 'Puddle', description: 'Description for card 4', image: 'url-to-image-4.jpg' },
   // ... more cards
 ]);
 </script>
@@ -51,16 +52,28 @@ const cards = ref([
 
 .swiper-slide {
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
-  perspective: 1000px; /* Adjust as necessary for the 3D effect */
+  perspective: 1000px;
 }
 
 .card {
   width: 300px;
   height: 200px;
-  padding: 20px;
   margin: 0 auto;
+  position: relative;
+}
+
+.card-image {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+.card-title {
+  margin-top: 10px; /* Space between the card and the title */
 }
 
 .swiper-pagination {
