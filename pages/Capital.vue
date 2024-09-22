@@ -1,108 +1,111 @@
 <template>
-  <div class="crypto-tracker">
-    <ul class="crypto-list">
-      <li v-for="crypto in cryptocurrencies" :key="crypto.id" class="crypto-item">
-        
-        <div class="crypto-rank">{{ crypto.rank }}</div>
-        <div class="crypto-info">
-          <img :src="crypto.icon" :alt="crypto.name" class="crypto-icon">
-          <div>
-            <div class="crypto-name">{{ crypto.name }}</div>
-            <div class="crypto-symbol">{{ crypto.symbol }}</div>
-          </div>
-        </div>
-        <div class="crypto-pricing">
-          <div class="crypto-price">{{ formatCurrency(crypto.price) }}</div>
-          <div class="crypto-supply">{{ formatSupply(crypto.supply) }}</div>
-        </div>
-        <div class="crypto-favorite">
-          <span v-if="crypto.isFavorite" class="icon-star"></span>
-        </div>
-      </li>
-    </ul>
+  <div>
+    <h2>Select Cryptocurrency</h2>
+    <select v-model="selectedCoin" @change="updateWebSocket">
+      <option v-for="coin in coins" :key="coin" :value="coin">{{ coin }}</option>
+    </select>
+
+    <div class="chart-container">
+      <canvas id="priceChart"></canvas>
+    </div>
   </div>
 </template>
 
 <script setup>
-import { ref, onMounted } from 'vue';
+import { ref, onMounted, watch } from 'vue';
+import Chart from 'chart.js/auto';
 
-const cryptocurrencies = ref([]);
+const prices = ref({}); // Reactive prices object
+const selectedCoin = ref('ethereum'); // Default selected coin
+const coins = ['bitcoin', 'ethereum', 'litecoin', 'maker', 'dogecoin', 'stellar', 'algorand', 'basic-attention-coin', 'compound', 'celo']; // Available coins
 
-const fetchCryptocurrencies = async () => {
-  // Placeholder: replace with your API call
-  const response = await fetch('https://pro-api.coinmarketcap.com/v1/exchange/listings/latest');
-  const data = await response.json();
-  cryptocurrencies.value = data;
+let socket = null; // WebSocket connection
+
+const createWebSocket = (coin) => {
+  if (socket) socket.close(); // Close any existing connection before creating a new one
+  socket = new WebSocket(`wss://ws.coincap.io/prices?assets=${coin}`);
+
+  socket.onmessage = (event) => {
+    const data = JSON.parse(event.data);
+    Object.keys(data).forEach((ticker) => {
+      prices.value[ticker] = parseFloat(data[ticker]);
+    });
+    updateChart(priceChart);
+  };
 };
+
+const updateWebSocket = () => {
+  createWebSocket(selectedCoin.value); // Create new WebSocket based on selected coin
+};
+
+let priceChart;
 
 onMounted(() => {
-  fetchCryptocurrencies();
+  const ctx = document.getElementById('priceChart').getContext('2d');
+
+  // Create initial chart
+  priceChart = new Chart(ctx, {
+    type: 'line',
+    data: {
+      labels: [], // Labels (cryptocurrency names)
+      datasets: [
+        {
+          label: 'Price (USD)',
+          data: [], // Price data
+          backgroundColor: 'rgba(75, 192, 192, 0.2)',
+          borderColor: 'rgba(75, 192, 192, 1)',
+          borderWidth: 1,
+          fill: true,
+          tension: 0.4, // Smoothing the line for better appearance on mobile
+        },
+      ],
+    },
+    options: {
+      responsive: true, // Make chart responsive
+      maintainAspectRatio: false, // Full height/width of the container
+      scales: {
+        y: {
+          beginAtZero: true, // Start Y-axis at zero
+        },
+      },
+    },
+  });
+
+  // Initialize WebSocket with default coin
+  updateWebSocket();
+
+  // Update chart every 2 seconds to reflect new data
+  setInterval(() => {
+    updateChart(priceChart);
+  }, 2000);
 });
 
-const formatCurrency = (value) => {
-  // Logic to format the price as currency
-  return new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(value);
-};
+function updateChart(chart) {
+  chart.data.labels = Object.keys(prices.value); // Update labels
+  chart.data.datasets[0].data = Object.values(prices.value); // Update price data
+  chart.update(); // Refresh chart
+}
 
-const formatSupply = (value) => {
-  // Logic to format the supply
-  return new Intl.NumberFormat('en-US').format(value);
-};
 </script>
 
 <style scoped>
-.crypto-tracker {
-  background: linear-gradient(180deg, #5e7ec4 0%, #171769 100%);
-  padding: 1rem;
-  border-radius: 1rem;
-  color: white;
+.chart-container {
+  width: 100%;
+  max-width: 100%;
+  height: 400px; /* Desktop */
+  @media (max-width: 600px) {
+    height: 300px; /* Mobile */
+  }
+}
 
+canvas {
+  width: 100% !important;
+  height: 100% !important;
 }
-.crypto-list {
-  list-style: none;
-  padding: 0;
-}
-.crypto-item {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 0.5rem;
-  border-bottom: 1px solid #2c2c2e;
-}
-.crypto-item:last-child {
-  border-bottom: none;
-}
-.crypto-rank {
-  font-size: 1.5rem;
-  font-weight: bold;
-}
-.crypto-info {
-  display: flex;
-  align-items: center;
-}
-.crypto-icon {
-  width: 2rem;
-  height: 2rem;
-  margin-right: 0.5rem;
-}
-.crypto-name {
-  font-size: 1.2rem;
-}
-.crypto-symbol {
-  color: #6c6c6e;
-}
-.crypto-pricing {
-  text-align: right;
-}
-.crypto-price {
-  font-size: 1.2rem;
-  font-weight: bold;
-}
-.crypto-supply {
-  color: #2d2d58;
-}
-.icon-star {
-  color: #ffac33; /* Change to your desired star color */
-  font-size: 1.5rem;
+
+select {
+  margin-bottom: 20px;
+  padding: 10px;
+  font-size: 16px;
 }
 </style>
