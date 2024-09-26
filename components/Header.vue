@@ -13,7 +13,7 @@
       </div>
     </div>
     <!-- NuxtLink for Promo Text -->
-    <NuxtLink to="/" class="promo-text absolute top-1/2 left-6 transform -translate-y-1/2">
+    <NuxtLink to="/Home" class="promo-text absolute top-1/2 left-6 transform -translate-y-1/2">
       .promo
     </NuxtLink>
     <!-- Bell icon for subscribing, which toggles the subscription modal -->

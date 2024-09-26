@@ -1,34 +1,31 @@
 <template>
   <footer>
-    <LoginModal v-if="showModal" @close="toggleModal" />
-    <div>
-      <!-- Your existing layout content here -->
+    <!-- Your existing layout content here -->
 
-      <!-- Footer buttons -->
-      <div class="w-full fixed bottom-0 mb-2" :class="{ hidden: !showElement }">
-        <div class="px-7">
-          <div class="flex -mx-2 justify-center">
-            <div class="w-1/2 px-2 bottom-66">
-              <nuxt-link to="/tools">
-                <button class="border border-slate-700 w-full hover:mt-1 duration-300 bg-gray-900 h-10 rounded-md text-white hover:bg-gray-600 focus:outline-none focus:ring-2 focus:ring-gray-600 active:bg-gray-700">
-                  Records
-                </button>
-              </nuxt-link>
-            </div>
-            <div class="w-1/2 px-0">
-              <nuxt-link to="/papers">
-                <button class="border border-slate-700 w-full hover:mt-1 duration-300 bg-gray-900 h-10 rounded-md text-white hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-gray-600 active:bg-gray-700">
-                  Team
-                </button>
-              </nuxt-link>
-            </div>
-            <div class="w-1/2 px-2">
-              <nuxt-link to="/books">
-                <button class="border border-slate-700 w-full hover:mt-1 duration-300 bg-gray-900 h-10 rounded-md text-white hover:bg-gray-600 focus:outline-none focus:ring-2 focus:ring-gray-600 active:bg-gray-700">
-                  Books
-                </button>
-              </nuxt-link>
-            </div>
+    <!-- Footer buttons -->
+    <div class="w-full fixed bottom-0 mb-2" :class="{ hidden: !showElement }">
+      <div class="px-7">
+        <div class="flex -mx-2 justify-center">
+          <div class="w-1/2 px-2 bottom-66">
+            <nuxt-link to="/tools">
+              <button class="border border-slate-700 w-full hover:mt-1 duration-300 bg-gray-900 h-10 rounded-md text-white hover:bg-gray-600 focus:outline-none focus:ring-2 focus:ring-gray-600 active:bg-gray-700">
+                Records
+              </button>
+            </nuxt-link>
+          </div>
+          <div class="w-1/2 px-0">
+            <nuxt-link to="/papers">
+              <button class="border border-slate-700 w-full hover:mt-1 duration-300 bg-gray-900 h-10 rounded-md text-white hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-gray-600 active:bg-gray-700">
+                Team
+              </button>
+            </nuxt-link>
+          </div>
+          <div class="w-1/2 px-2">
+            <nuxt-link to="/books">
+              <button class="border border-slate-700 w-full hover:mt-1 duration-300 bg-gray-900 h-10 rounded-md text-white hover:bg-gray-600 focus:outline-none focus:ring-2 focus:ring-gray-600 active:bg-gray-700">
+                Books
+              </button>
+            </nuxt-link>
           </div>
         </div>
       </div>
@@ -38,7 +35,6 @@
 
 <script setup lang="ts">
 import { ref, onMounted, onUnmounted } from "vue";
-import LoginModal from '~/components/LoginModal.vue'; // Import the LoginModal component
 import { useModalStore } from '~/stores/useModalStore'; // Import the modal store
 import magic from '~/utils/magic'; // Import the Magic instance
 

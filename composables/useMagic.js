@@ -1,25 +1,51 @@
 import { useNuxtApp } from '#app';
+import { useRouter } from 'vue-router';
 
 export default function useMagic() {
   const nuxtApp = useNuxtApp();
-  const magic = nuxtApp.$magic; // Access the Magic instance provided in the plugin
+  const magic = nuxtApp.$magic;
+  const router = useRouter();
+
+  const checkLoginStatus = async () => {
+    try {
+      return await magic.user.isLoggedIn();
+    } catch (error) {
+      console.error('Error checking login status:', error);
+      return false;
+    }
+  };
+
+  const handleLoginSuccess = async () => {
+    const isLoggedIn = await checkLoginStatus();
+    if (isLoggedIn) {
+      router.push('/home');
+    }
+  };
 
   return {
+    loginWithMagicLink: async (email) => {
+      try {
+        await magic.auth.loginWithMagicLink({ email });
+        await handleLoginSuccess();
+      } catch (error) {
+        console.error('Magic Link login failed:', error);
+        throw error;
+      }
+    },
     loginWithGoogle: async () => {
       try {
         await magic.oauth.loginWithRedirect({
-          provider: 'google', // Specify Google as the provider
-          // Optional: Specify a redirect URI
-          redirectURI: `${window.location.origin}/callback`, // Adjust as necessary
+          provider: 'google',
+          redirectURI: `${window.location.origin}/callback`,
         });
-        // The user will be redirected to Google for login
       } catch (error) {
-        // Handle errors here
-        console.error('OAuth login failed:', error);
+        console.error('Google login failed:', error);
+        throw error;
       }
     },
-    isLoggedIn: async () => await magic.user.isLoggedIn(),
+    isLoggedIn: checkLoginStatus,
     getUserMetadata: async () => await magic.user.getMetadata(),
-    // Keep other methods as is
+    handleLoginSuccess,
+    checkLoginStatus,
   };
 }
