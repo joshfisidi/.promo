@@ -4,7 +4,12 @@
       <Header />
       <NuxtPage />
       <Footer />
+<<<<<<< HEAD
     </NuxtLayout>
+=======
+
+    </NuxtLayout> 
+>>>>>>> refs/remotes/origin/main
   </div>
 </template>
 

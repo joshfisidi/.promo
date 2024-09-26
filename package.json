@@ -31,6 +31,7 @@
     "@vueuse/core": "^10.4.1",
     "@vueuse/motion": "^2.0.0",
     "axios": "^1.5.0",
+    "chart.js": "^4.4.4",
     "ethers": "^6.11.1",
     "ipx": "^3.0.1",
     "magic-sdk": "^22.1.1",
@@ -38,6 +39,7 @@
     "sass": "^1.6.0",
     "swiper": "^11.0.5",
     "three": "^0.156.1",
+    "vue-chartjs": "^5.3.1",
     "vue-tilt.js": "^1.1.1"
   }
 }
