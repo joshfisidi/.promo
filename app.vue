@@ -14,11 +14,9 @@ import { useRouter } from 'vue-router';
 import useMagic from '~/composables/useMagic';
 
 const router = useRouter();
-const { checkLoginStatus } = useMagic();
 const isLoggedIn = ref(false);
 
 const checkAuth = async () => {
-  isLoggedIn.value = await checkLoginStatus();
   if (!isLoggedIn.value && router.currentRoute.value.path !== '/auth') {
     router.push('/auth');
   }

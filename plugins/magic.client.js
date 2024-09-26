@@ -8,3 +8,5 @@ export default defineNuxtPlugin(nuxtApp => {
   nuxtApp.provide('magic', magic);
   console.log('Magic plugin loaded');
 });
+
+
