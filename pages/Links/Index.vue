@@ -1,4 +1,5 @@
 <template>
+  <div>
     <Josh />
     <Description />
     <Social />
@@ -8,9 +9,9 @@
     <Capital />
     <Code />
     <Ad /> 
+  </div>
   </template>
   
   <script setup>
   
   </script>
-  
