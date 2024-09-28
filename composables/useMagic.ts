@@ -1,78 +1,32 @@
 import { ref } from 'vue';
 import { useNuxtApp } from '#app';
 import { useRouter } from 'vue-router';
-import { ethers } from 'ethers';
 import { Magic } from 'magic-sdk';
 import { OAuthExtension } from '@magic-ext/oauth';
 
 export default function useMagic() {
   const nuxtApp = useNuxtApp();
-  const magic = nuxtApp.$magic as InstanceWithExtensions<Magic, [OAuthExtension]>;
+  const magic = nuxtApp.$magic as Magic & { oauth: OAuthExtension };
   const router = useRouter();
 
-  const ensName = ref<string | null>(null);
-  const ensAvatar = ref<string | null>(null);
   const isLoggedIn = ref<boolean>(false);
   const userMetadata = ref<any>(null);
 
-  const provider = new ethers.providers.JsonRpcProvider(process.env.NUXT_PUBLIC_ALCHEMY_RPC_URL);
-
   /**
-   * Fetches the ENS name and avatar for a given Ethereum address.
-   * @param address - The Ethereum address to lookup.
-   */
-  const fetchENSDetails = async (address: string): Promise<void> => {
-    try {
-      const name = await provider.lookupAddress(address);
-      if (name) {
-        ensName.value = name;
-        const resolver = await provider.getResolver(name);
-        if (resolver) {
-          const avatar = await resolver.getText('avatar');
-          if (avatar) {
-            if (avatar.startsWith('ipfs://')) {
-              const ipfsHash = avatar.slice(7);
-              ensAvatar.value = `https://ipfs.io/ipfs/${ipfsHash}`;
-            } else {
-              ensAvatar.value = avatar;
-            }
-          } else {
-            ensAvatar.value = null;
-          }
-        } else {
-          ensAvatar.value = null;
-        }
-      } else {
-        ensName.value = null;
-        ensAvatar.value = null;
-      }
-    } catch (error) {
-      console.error('Error fetching ENS details:', error);
-      ensName.value = null;
-      ensAvatar.value = null;
-    }
-  };
-
-  /**
-   * Updates the user's login status, metadata, and ENS details.
+   * Updates the user's login status and metadata.
    */
   const updateUserInfo = async (): Promise<void> => {
     try {
       isLoggedIn.value = await magic.user.isLoggedIn();
       if (isLoggedIn.value) {
         userMetadata.value = await magic.user.getMetadata();
-        await fetchENSDetails(userMetadata.value.publicAddress);
       } else {
         userMetadata.value = null;
-        ensName.value = null;
-        ensAvatar.value = null;
       }
     } catch (error) {
       console.error('Error updating user info:', error);
       isLoggedIn.value = false;
       userMetadata.value = null;
-      ensName.value = null;
-      ensAvatar.value = null;
     }
   };
 
@@ -114,8 +68,6 @@ export default function useMagic() {
       await magic.user.logout();
       isLoggedIn.value = false;
       userMetadata.value = null;
-      ensName.value = null;
-      ensAvatar.value = null;
       router.push('/auth');
     } catch (error) {
       console.error('Logout failed:', error);
@@ -140,8 +92,6 @@ export default function useMagic() {
     checkAuth,
     isLoggedIn,
     userMetadata,
-    ensName,
-    ensAvatar,
     updateUserInfo,
   };
 }
