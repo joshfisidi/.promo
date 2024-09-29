@@ -1,196 +1,68 @@
+<!-- pages/index.vue -->
+
 <template>
-  <div class="auth-container">
-    <div class="auth-content">
-      <h2 class="auth-title">Welcome to They.Promo</h2>
-      
-      <!-- Magic Link Login Form -->
-      <form @submit.prevent="handleMagicLinkLogin" class="auth-form">
-        <label for="email" class="auth-label">Email Address</label>
-        <input
-          type="email"
-          id="email"
-          v-model="email"
-          class="auth-input"
-          placeholder="Enter your email"
-          required
-        />
-        <button type="submit" class="auth-button">Login with Magic Link</button>
-      </form>
-      
-      <div class="divider">OR</div>
-      
-      <!-- Google Social Login Button -->
-      <button @click="handleGoogleLogin" class="auth-button google-button">
-        <img src="/images/google-icon.svg" alt="Google Icon" class="google-icon" />
-        Login with Google
-      </button>
-      
-      <!-- Error Message -->
-      <p v-if="errorMessage" class="error-message">{{ errorMessage }}</p>
-      
-      <!-- Success Message -->
-      <p v-if="successMessage" class="success-message">{{ successMessage }}</p>
+  <div class="min-h-screen bg-gradient-to-br from-red-500 to-pink-600 p-4 sm:p-8">
+    <div class="max-w-2xl mx-auto bg-white bg-opacity-10 backdrop-filter backdrop-blur-lg rounded-2xl shadow-xl overflow-hidden">
+      <div class="p-6 sm:p-8">
+        <h1 class="text-3xl sm:text-4xl font-extrabold text-white text-center mb-8">Your Name</h1>
+        
+        <!-- User avatar -->
+        <div class="mb-6 flex justify-center">
+          <div class="w-24 h-24 rounded-full bg-gradient-to-r from-yellow-400 to-orange-500 flex items-center justify-center shadow-lg">
+            <div class="text-white font-bold text-4xl">
+              {{ userInitial }}
+            </div>
+          </div>
+        </div>
+
+        <!-- Bio -->
+        <p class="text-white text-center mb-8">Your short bio goes here. Describe yourself in a few words.</p>
+
+        <!-- Links -->
+        <div class="space-y-4">
+          <a v-for="link in links" :key="link.url" 
+             :href="link.url" 
+             target="_blank" 
+             rel="noopener noreferrer"
+             class="block w-full bg-white bg-opacity-20 hover:bg-opacity-30 text-white font-bold py-3 px-4 rounded-lg transition duration-300 ease-in-out transform hover:-translate-y-1 hover:shadow-lg text-center"
+          >
+            {{ link.title }}
+          </a>
+        </div>
+
+        <!-- Social icons -->
+        <div class="flex justify-center mt-8 space-x-4">
+          <a v-for="social in socials" :key="social.url" 
+             :href="social.url" 
+             target="_blank" 
+             rel="noopener noreferrer"
+             class="text-white hover:text-yellow-400 transition duration-300"
+          >
+            <i :class="social.icon" class="text-2xl"></i>
+          </a>
+        </div>
+      </div>
     </div>
   </div>
 </template>
 
-<script setup lang="ts">
-import { ref } from 'vue';
-import useMagic from '~/composables/useMagic';
+<script setup>
+import { ref, computed } from 'vue';
 
-const email = ref('');
-const errorMessage = ref('');
-const successMessage = ref('');
+const userName = ref('John Doe');
+const userInitial = computed(() => userName.value.charAt(0).toUpperCase());
 
-const { loginWithMagicLink, loginWithGoogle } = useMagic();
+const links = ref([
+  { title: 'My Website', url: 'https://example.com' },
+  { title: 'My Blog', url: 'https://blog.example.com' },
+  { title: 'My YouTube Channel', url: 'https://youtube.com/user/example' },
+  { title: 'My Latest Project', url: 'https://project.example.com' },
+]);
 
-/**
- * Handles Magic Link Login
- */
-const handleMagicLinkLogin = async () => {
-  errorMessage.value = '';
-  successMessage.value = '';
-  
-  try {
-    await loginWithMagicLink(email.value);
-    successMessage.value = 'Magic Link sent! Please check your email.';
-  } catch (error: any) {
-    console.error('Magic Link login failed:', error);
-    errorMessage.value = error.message || 'Failed to send Magic Link. Please try again.';
-  }
-};
-
-/**
- * Handles Google Social Login
- */
-const handleGoogleLogin = async () => {
-  errorMessage.value = '';
-  successMessage.value = '';
-  
-  try {
-    await loginWithGoogle();
-    // The user will be redirected automatically after successful login
-  } catch (error: any) {
-    console.error('Google login failed:', error);
-    errorMessage.value = error.message || 'Google login failed. Please try again.';
-  }
-};
+const socials = ref([
+  { icon: 'fab fa-twitter', url: 'https://twitter.com/example' },
+  { icon: 'fab fa-instagram', url: 'https://instagram.com/example' },
+  { icon: 'fab fa-github', url: 'https://github.com/example' },
+  { icon: 'fab fa-linkedin', url: 'https://linkedin.com/in/example' },
+]);
 </script>
-
-<style scoped lang="scss">
-.auth-container {
-  display: grid;
-  place-items: center; /* Centers both vertically and horizontally */
-  min-height: 100vh;
-  padding: 1rem;
-  box-sizing: border-box;
-  background-color: #f5f5f5;
-}
-
-.auth-content {
-  width: 100%;
-  max-width: 400px;
-  background-color: #ffffff;
-  padding: 2rem;
-  border-radius: 8px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  text-align: center;
-}
-
-.auth-title {
-  margin-bottom: 1.5rem;
-  font-size: 1.5rem;
-  color: #333333;
-}
-
-.auth-form {
-  display: flex;
-  flex-direction: column;
-  align-items: stretch;
-}
-
-.auth-label {
-  margin-bottom: 0.5rem;
-  text-align: left;
-  font-weight: bold;
-  color: #555555;
-}
-
-.auth-input {
-  padding: 0.75rem;
-  margin-bottom: 1rem;
-  border: 1px solid #cccccc;
-  border-radius: 4px;
-  font-size: 1rem;
-}
-
-.auth-button {
-  padding: 0.75rem;
-  background-color: #4a90e2;
-  color: #ffffff;
-  border: none;
-  border-radius: 4px;
-  font-size: 1rem;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-
-.auth-button:hover {
-  background-color: #357ab8;
-}
-
-.google-button {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: #db4437;
-  margin-top: 1rem;
-}
-
-.google-button:hover {
-  background-color: #c33d2e;
-}
-
-.google-icon {
-  width: 20px;
-  height: 20px;
-  margin-right: 0.5rem;
-}
-
-.divider {
-  margin: 1.5rem 0;
-  position: relative;
-  text-align: center;
-  color: #999999;
-}
-
-.divider::before,
-.divider::after {
-  content: '';
-  position: absolute;
-  top: 50%;
-  width: 40%;
-  height: 1px;
-  background-color: #cccccc;
-}
-
-.divider::before {
-  left: 0;
-}
-
-.divider::after {
-  right: 0;
-}
-
-.error-message {
-  margin-top: 1rem;
-  color: #e74c3c;
-  font-weight: bold;
-}
-
-.success-message {
-  margin-top: 1rem;
-  color: #2ecc71;
-  font-weight: bold;
-}
-</style>
