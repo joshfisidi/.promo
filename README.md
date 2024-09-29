@@ -4,7 +4,6 @@
 
 > 
 
-[![Build Status](https://travis-ci.com/yourusername/jOsh.Promo.svg?branch=main)](https://travis-ci.com/yourusername/jOsh.Promo)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 ![Static Badge](https://img.shields.io/badge/Nuxt-%2300DC82?style=for-the-badge&logo=nuxtdotjs&logoColor=%23ffffff&labelColor=%2300DC82&cacheSeconds=3600)
