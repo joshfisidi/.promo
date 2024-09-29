@@ -34,6 +34,7 @@ Tokenized Link Sharing
 
 #roadmap
 2023 conceptulization
-2024 internal prototype testing
-2025 external testing
+2024 Q1 Q2 Q3 internal prototype testing
+2024 Q4 external testing
+2025 launch
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
