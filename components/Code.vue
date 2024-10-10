@@ -15,12 +15,8 @@
 
 <script>
 import { ref } from "vue";
-import Matrix from './Matrix.vue';
 
 export default {
-  components: {
-    Matrix,
-  },
   setup() {
     const isActive = ref(false);
     const isHovered = ref(false);

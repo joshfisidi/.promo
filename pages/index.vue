@@ -4,7 +4,7 @@
   <div class="min-h-screen bg-gradient-to-br from-red-500 to-pink-600 p-4 sm:p-8">
     <div class="max-w-2xl mx-auto bg-white bg-opacity-10 backdrop-filter backdrop-blur-lg rounded-2xl shadow-xl overflow-hidden">
       <div class="p-6 sm:p-8">
-        <h1 class="text-3xl sm:text-4xl font-extrabold text-white text-center mb-8">Your Name</h1>
+        <h1 class="text-3xl sm:text-4xl font-extrabold text-white text-center mb-8">Billy Bob</h1>
         
         <!-- User avatar -->
         <div class="mb-6 flex justify-center">
@@ -16,7 +16,7 @@
         </div>
 
         <!-- Bio -->
-        <p class="text-white text-center mb-8">Your short bio goes here. Describe yourself in a few words.</p>
+        <p class="text-white text-center mb-8">If you are reading this you are probably a developer. If you want to contribute to ENS.PROMO please open an issue or submit a pull request.</p>
 
         <!-- Links -->
         <div class="space-y-4">
@@ -44,6 +44,7 @@
       </div>
     </div>
   </div>
+
 </template>
 
 <script setup>
@@ -53,7 +54,7 @@ const userName = ref('John Doe');
 const userInitial = computed(() => userName.value.charAt(0).toUpperCase());
 
 const links = ref([
-  { title: 'My Website', url: 'https://example.com' },
+  { title: 'Music', url: 'https://example.com' },
   { title: 'My Blog', url: 'https://blog.example.com' },
   { title: 'My YouTube Channel', url: 'https://youtube.com/user/example' },
   { title: 'My Latest Project', url: 'https://project.example.com' },

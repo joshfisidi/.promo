@@ -1,11 +1,12 @@
 export default defineNuxtConfig({
   devtools: { enabled: true },
+
   // Alias configurations
   alias: {
     assets: "/assets",
     icons: '/favicon.ico'
   },
-  
+
   // CSS configurations
   css: ["~/assets/main.scss", "~/assets/Josh.scss"],
 
@@ -56,8 +57,11 @@ export default defineNuxtConfig({
     supabaseKey: process.env.SUPABASE_KEY,
     // Add any other environment variables you need
   },
+
   hooks: {
     'ready': () => {
       console.log('Magic Publishable Key:', process.env.MAGIC_PUBLISHABLE_KEY);
-    }}
+    }},
+
+  compatibilityDate: '2024-10-10'
 });
