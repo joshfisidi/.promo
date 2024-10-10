@@ -1,6 +1,6 @@
 ![ENS.PROMO](https://gojilzafapjkmacdfisx.supabase.co/storage/v1/object/public/josh.promo/ens.promo-logo.png)
 
-<h1 align="center" id="title">ENS.PROMO</h1>
+<h1 align="center" id="title">TOKENIZED SOCIAL LINKS</h1>
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
