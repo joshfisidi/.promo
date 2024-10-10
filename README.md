@@ -1,8 +1,4 @@
-<<<<<<< HEAD
-![ens.promo](/ens.promo-logo.png)
-=======
 [ENS.PROMO](/header/ens.promo.png)
->>>>>>> 1875add (still restructuring)
 
 <h1 align="center" id="title">ENS.PROMO</h1>
 
