@@ -1,4 +1,4 @@
-[](/header/ens.promo-logo.png)
+![ENS.PROMO](/header/ens.promo-logo.png)
 
 <h1 align="center" id="title">ENS.PROMO</h1>
 
